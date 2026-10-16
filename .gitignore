@@ -2,3 +2,5 @@
 .venv/
 data/*.db
 chroma_index/
+__pycache__/
+*.py[cod]
