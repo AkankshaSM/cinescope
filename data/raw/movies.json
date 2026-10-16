@@ -1,0 +1,168 @@
+[
+  {
+    "id": 157336,
+    "title": "Interstellar",
+    "release_date": "2014-11-04",
+    "overview": "The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.",
+    "genres": [
+      "Adventure",
+      "Drama",
+      "Science Fiction"
+    ],
+    "director": [
+      "Christopher Nolan"
+    ],
+    "runtime": 169,
+    "vote_average": 8.491,
+    "vote_count": 41495
+  },
+  {
+    "id": 27205,
+    "title": "Inception",
+    "release_date": "2010-07-15",
+    "overview": "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \"inception\", the implantation of another person's idea into a target's subconscious.",
+    "genres": [
+      "Action",
+      "Science Fiction",
+      "Crime"
+    ],
+    "director": [
+      "Christopher Nolan"
+    ],
+    "runtime": 148,
+    "vote_average": 8.373,
+    "vote_count": 40436
+  },
+  {
+    "id": 329865,
+    "title": "Arrival",
+    "release_date": "2016-11-10",
+    "overview": "Taking place after alien crafts land around the world, an expert linguist is recruited by the military to determine whether they come in peace or are a threat.",
+    "genres": [
+      "Drama",
+      "Science Fiction",
+      "Mystery"
+    ],
+    "director": [
+      "Denis Villeneuve"
+    ],
+    "runtime": 116,
+    "vote_average": 7.637,
+    "vote_count": 20020
+  },
+  {
+    "id": 286217,
+    "title": "The Martian",
+    "release_date": "2015-09-30",
+    "overview": "During a manned mission to Mars, Astronaut Mark Watney is presumed dead after a fierce storm and left behind by his crew. But Watney has survived and finds himself stranded and alone on the hostile planet. With only meager supplies, he must draw upon his ingenuity, wit and spirit to subsist and find a way to signal to Earth that he is alive.",
+    "genres": [
+      "Science Fiction",
+      "Drama",
+      "Adventure"
+    ],
+    "director": [
+      "Ridley Scott"
+    ],
+    "runtime": 141,
+    "vote_average": 7.71,
+    "vote_count": 21959
+  },
+  {
+    "id": 438631,
+    "title": "Dune",
+    "release_date": "2021-09-15",
+    "overview": "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence - a commodity capable of unlocking humanity's greatest potential - only those who can conquer their fear will survive.",
+    "genres": [
+      "Science Fiction",
+      "Adventure"
+    ],
+    "director": [
+      "Denis Villeneuve"
+    ],
+    "runtime": 155,
+    "vote_average": 7.784,
+    "vote_count": 15716
+  },
+  {
+    "id": 1124,
+    "title": "The Prestige",
+    "release_date": "2006-10-19",
+    "overview": "A mysterious story of two magicians whose intense rivalry leads them on a life-long battle for supremacy -- full of obsession, deceit and jealousy with dangerous and deadly consequences.",
+    "genres": [
+      "Drama",
+      "Mystery",
+      "Science Fiction"
+    ],
+    "director": [
+      "Christopher Nolan"
+    ],
+    "runtime": 130,
+    "vote_average": 8.212,
+    "vote_count": 18282
+  },
+  {
+    "id": 264660,
+    "title": "Ex Machina",
+    "release_date": "2015-01-21",
+    "overview": "Caleb, a coder at the world's largest internet company, wins a competition to spend a week at a private mountain retreat belonging to Nathan, the reclusive CEO of the company. But when Caleb arrives at the remote location he finds that he will have to participate in a strange and fascinating experiment in which he must interact with the world's first true artificial intelligence, housed in the body of a beautiful robot girl.",
+    "genres": [
+      "Drama",
+      "Science Fiction"
+    ],
+    "director": [
+      "Alex Garland"
+    ],
+    "runtime": 108,
+    "vote_average": 7.571,
+    "vote_count": 14694
+  },
+  {
+    "id": 335984,
+    "title": "Blade Runner 2049",
+    "release_date": "2017-10-04",
+    "overview": "Thirty years after the events of the first film, a new blade runner, LAPD Officer K, unearths a long-buried secret that has the potential to plunge what's left of society into chaos. K's discovery leads him on a quest to find Rick Deckard, a former LAPD blade runner who has been missing for 30 years.",
+    "genres": [
+      "Science Fiction",
+      "Drama"
+    ],
+    "director": [
+      "Denis Villeneuve"
+    ],
+    "runtime": 164,
+    "vote_average": 7.61,
+    "vote_count": 15847
+  },
+  {
+    "id": 11324,
+    "title": "Shutter Island",
+    "release_date": "2010-02-14",
+    "overview": "World War II soldier-turned-U.S. Marshal Teddy Daniels investigates the disappearance of a patient from a hospital for the criminally insane, but his efforts are compromised by troubling visions and a mysterious doctor.",
+    "genres": [
+      "Drama",
+      "Thriller",
+      "Mystery"
+    ],
+    "director": [
+      "Martin Scorsese"
+    ],
+    "runtime": 138,
+    "vote_average": 8.196,
+    "vote_count": 26600
+  },
+  {
+    "id": 37165,
+    "title": "The Truman Show",
+    "release_date": "1998-06-04",
+    "overview": "In a picture-perfect seaside town, an insurance salesman begins to realize that his entire existence may be staged and observed by a vast unseen audience as part of a long-running real-time reality TV show.",
+    "genres": [
+      "Comedy",
+      "Drama"
+    ],
+    "director": [
+      "Peter Weir"
+    ],
+    "runtime": 103,
+    "vote_average": 8.16,
+    "vote_count": 21033
+  }
+]
