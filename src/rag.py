@@ -8,6 +8,7 @@ from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+import json
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT_DIR / ".env", override=True)
@@ -124,26 +125,47 @@ def answer_question(question: str) -> dict:
     }
 
 
-def main():
-    question = " ".join(sys.argv[1:]).strip()
 
-    if not question:
-        print('Usage: python -m src.rag "Your question"')
-        sys.exit(1)
+async def main():
+    query = " ".join(sys.argv[1:]).strip()
 
-    result = answer_question(question)
+    if not query:
+        query = "Latest movie release announcements"
 
-    print("\n=== CineScope Answer ===\n")
-    print(result["answer"])
+    print("Connecting to Tavily Remote MCP...")
 
-    print("\n=== Retrieved Sources ===\n")
+    tools = await get_tavily_tools()
 
-    for index, source in enumerate(result["sources"], start=1):
-        print(
-            f"[{index}] {source['title']}\n"
-            f"    Chunk: {source['id']}\n"
-            f"    URL: {source['source']}\n"
-        )
+    print("\nAvailable MCP tools:")
+    for tool in tools:
+        print(f"- {tool.name}")
+
+    search_tool = next(
+        (tool for tool in tools if "search" in tool.name.lower()),
+        None,
+    )
+
+    if search_tool is None:
+        raise RuntimeError("Tavily search tool not available")
+
+    print(f"\nSearching: {query}\n")
+
+    result = await search_tool.ainvoke({"query": query})
+
+    print("=== Tavily Search Results ===\n")
+    print(result)
+
+    for item in result:
+        if isinstance(item, dict) and item.get("type") == "text":
+            try:
+                payload = json.loads(item["text"])
+            except json.JSONDecodeError:
+                continue
+
+            if isinstance(payload, dict) and "error" in payload:
+                raise RuntimeError(
+                    f"Tavily search failed: {payload}"
+                )
 
 
 if __name__ == "__main__":
