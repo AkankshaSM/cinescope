@@ -13,8 +13,9 @@
       "Christopher Nolan"
     ],
     "runtime": 169,
-    "vote_average": 8.491,
-    "vote_count": 41495
+    "vote_average": 8.5,
+    "vote_count": 41553,
+    "wikidata_id": "Q13417189"
   },
   {
     "id": 27205,
@@ -30,8 +31,9 @@
       "Christopher Nolan"
     ],
     "runtime": 148,
-    "vote_average": 8.373,
-    "vote_count": 40436
+    "vote_average": 8.372,
+    "vote_count": 40482,
+    "wikidata_id": "Q25188"
   },
   {
     "id": 329865,
@@ -47,8 +49,9 @@
       "Denis Villeneuve"
     ],
     "runtime": 116,
-    "vote_average": 7.637,
-    "vote_count": 20020
+    "vote_average": 7.6,
+    "vote_count": 20055,
+    "wikidata_id": "Q20382729"
   },
   {
     "id": 286217,
@@ -64,8 +67,9 @@
       "Ridley Scott"
     ],
     "runtime": 141,
-    "vote_average": 7.71,
-    "vote_count": 21959
+    "vote_average": 7.7,
+    "vote_count": 21985,
+    "wikidata_id": "Q18547944"
   },
   {
     "id": 438631,
@@ -80,8 +84,9 @@
       "Denis Villeneuve"
     ],
     "runtime": 155,
-    "vote_average": 7.784,
-    "vote_count": 15716
+    "vote_average": 7.785,
+    "vote_count": 15753,
+    "wikidata_id": "Q60834962"
   },
   {
     "id": 1124,
@@ -98,7 +103,8 @@
     ],
     "runtime": 130,
     "vote_average": 8.212,
-    "vote_count": 18282
+    "vote_count": 18312,
+    "wikidata_id": "Q46551"
   },
   {
     "id": 264660,
@@ -113,8 +119,9 @@
       "Alex Garland"
     ],
     "runtime": 108,
-    "vote_average": 7.571,
-    "vote_count": 14694
+    "vote_average": 7.57,
+    "vote_count": 14710,
+    "wikidata_id": "Q16635326"
   },
   {
     "id": 335984,
@@ -130,7 +137,8 @@
     ],
     "runtime": 164,
     "vote_average": 7.61,
-    "vote_count": 15847
+    "vote_count": 15876,
+    "wikidata_id": "Q21500755"
   },
   {
     "id": 11324,
@@ -146,8 +154,9 @@
       "Martin Scorsese"
     ],
     "runtime": 138,
-    "vote_average": 8.196,
-    "vote_count": 26600
+    "vote_average": 8.2,
+    "vote_count": 26635,
+    "wikidata_id": "Q210364"
   },
   {
     "id": 37165,
@@ -163,6 +172,1174 @@
     ],
     "runtime": 103,
     "vote_average": 8.16,
-    "vote_count": 21033
+    "vote_count": 21070,
+    "wikidata_id": "Q214801"
+  },
+  {
+    "id": 24428,
+    "title": "The Avengers",
+    "release_date": "2012-04-25",
+    "overview": "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
+    "genres": [
+      "Science Fiction",
+      "Action",
+      "Adventure"
+    ],
+    "director": [
+      "Joss Whedon"
+    ],
+    "runtime": 143,
+    "vote_average": 8.081,
+    "vote_count": 40091,
+    "wikidata_id": "Q182218"
+  },
+  {
+    "id": 155,
+    "title": "The Dark Knight",
+    "release_date": "2008-07-16",
+    "overview": "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker.",
+    "genres": [
+      "Action",
+      "Thriller",
+      "Crime"
+    ],
+    "director": [
+      "Christopher Nolan"
+    ],
+    "runtime": 152,
+    "vote_average": 8.538,
+    "vote_count": 37011,
+    "wikidata_id": "Q163872"
+  },
+  {
+    "id": 19995,
+    "title": "Avatar",
+    "release_date": "2009-12-16",
+    "overview": "In the 22nd century, a paraplegic Marine is dispatched to the moon Pandora on a unique mission, but becomes torn between following orders and protecting an alien civilization.",
+    "genres": [
+      "Science Fiction",
+      "Action",
+      "Adventure"
+    ],
+    "director": [
+      "James Cameron"
+    ],
+    "runtime": 162,
+    "vote_average": 7.611,
+    "vote_count": 34878,
+    "wikidata_id": "Q24871"
+  },
+  {
+    "id": 293660,
+    "title": "Deadpool",
+    "release_date": "2016-02-09",
+    "overview": "The origin story of former Special Forces operative turned mercenary Wade Wilson, who, after being subjected to a rogue experiment that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his life.",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Comedy"
+    ],
+    "director": [
+      "Tim Miller"
+    ],
+    "runtime": 108,
+    "vote_average": 7.626,
+    "vote_count": 33483,
+    "wikidata_id": "Q19347291"
+  },
+  {
+    "id": 299536,
+    "title": "Avengers: Infinity War",
+    "release_date": "2018-04-25",
+    "overview": "As the Avengers and their allies have continued to protect the world from threats too large for any one hero to handle, a new danger has emerged from the cosmic shadows: Thanos. A despot of intergalactic infamy, his goal is to collect all six Infinity Stones, artifacts of unimaginable power, and use them to inflict his twisted will on all of reality. Everything the Avengers have fought for has led up to this moment - the fate of Earth and existence itself has never been more uncertain.",
+    "genres": [
+      "Adventure",
+      "Action",
+      "Science Fiction"
+    ],
+    "director": [
+      "Anthony Russo",
+      "Joe Russo"
+    ],
+    "runtime": 149,
+    "vote_average": 8.245,
+    "vote_count": 33192,
+    "wikidata_id": "Q23780914"
+  },
+  {
+    "id": 550,
+    "title": "Fight Club",
+    "release_date": "1999-10-15",
+    "overview": "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground \"fight clubs\" forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
+    "genres": [
+      "Drama",
+      "Thriller"
+    ],
+    "director": [
+      "David Fincher"
+    ],
+    "runtime": 139,
+    "vote_average": 8.438,
+    "vote_count": 33055,
+    "wikidata_id": "Q190050"
+  },
+  {
+    "id": 278,
+    "title": "The Shawshank Redemption",
+    "release_date": "1994-09-23",
+    "overview": "Imprisoned in the 1940s for the double murder of his wife and her lover, upstanding banker Andy Dufresne begins a new life at the Shawshank prison, where he puts his accounting skills to work for an amoral warden. During his long stretch in prison, Dufresne comes to be admired by the other inmates -- including an older prisoner named Red -- for his integrity and unquenchable sense of hope.",
+    "genres": [
+      "Drama",
+      "Crime"
+    ],
+    "director": [
+      "Frank Darabont"
+    ],
+    "runtime": 142,
+    "vote_average": 8.733,
+    "vote_count": 31624,
+    "wikidata_id": "Q172241"
+  },
+  {
+    "id": 680,
+    "title": "Pulp Fiction",
+    "release_date": "1994-09-10",
+    "overview": "A burger-loving hit man, his philosophical partner, a drug-addled gangster's moll and a washed-up boxer converge in this sprawling, comedic crime caper. Their adventures unfurl in three stories that ingeniously trip back and forth in time.",
+    "genres": [
+      "Thriller",
+      "Crime",
+      "Comedy"
+    ],
+    "director": [
+      "Quentin Tarantino"
+    ],
+    "runtime": 154,
+    "vote_average": 8.48,
+    "vote_count": 31123,
+    "wikidata_id": "Q104123"
+  },
+  {
+    "id": 13,
+    "title": "Forrest Gump",
+    "release_date": "1994-06-23",
+    "overview": "A man with a low IQ has accomplished great things in his life and been present during significant historic events—in each case, far exceeding what anyone imagined he could do. But despite all he has achieved, his one true love eludes him.",
+    "genres": [
+      "Comedy",
+      "Drama",
+      "Romance"
+    ],
+    "director": [
+      "Robert Zemeckis"
+    ],
+    "runtime": 142,
+    "vote_average": 8.462,
+    "vote_count": 30699,
+    "wikidata_id": "Q134773"
+  },
+  {
+    "id": 118340,
+    "title": "Guardians of the Galaxy",
+    "release_date": "2014-07-30",
+    "overview": "Light years from Earth, 26 years after being abducted, Peter Quill finds himself the prime target of a manhunt after discovering an orb wanted by Ronan the Accuser.",
+    "genres": [
+      "Action",
+      "Science Fiction",
+      "Adventure"
+    ],
+    "director": [
+      "James Gunn"
+    ],
+    "runtime": 121,
+    "vote_average": 7.907,
+    "vote_count": 30497,
+    "wikidata_id": "Q5887360"
+  },
+  {
+    "id": 671,
+    "title": "Harry Potter and the Philosopher's Stone",
+    "release_date": "2001-11-16",
+    "overview": "Harry Potter has lived under the stairs at his aunt and uncle's house his whole life. But on his 11th birthday, he learns he's a powerful wizard—with a place waiting for him at the Hogwarts School of Witchcraft and Wizardry. As he learns to harness his newfound powers with the help of the school's kindly headmaster, Harry uncovers the truth about his parents' deaths—and about the villain who's to blame.",
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ],
+    "director": [
+      "Chris Columbus"
+    ],
+    "runtime": 152,
+    "vote_average": 7.905,
+    "vote_count": 30450,
+    "wikidata_id": "Q102438"
+  },
+  {
+    "id": 299534,
+    "title": "Avengers: Endgame",
+    "release_date": "2019-04-24",
+    "overview": "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+    "genres": [
+      "Adventure",
+      "Science Fiction",
+      "Action"
+    ],
+    "director": [
+      "Anthony Russo",
+      "Joe Russo"
+    ],
+    "runtime": 181,
+    "vote_average": 8.246,
+    "vote_count": 29050,
+    "wikidata_id": "Q23781155"
+  },
+  {
+    "id": 1726,
+    "title": "Iron Man",
+    "release_date": "2008-04-30",
+    "overview": "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
+    "genres": [
+      "Action",
+      "Science Fiction",
+      "Adventure"
+    ],
+    "director": [
+      "Jon Favreau"
+    ],
+    "runtime": 126,
+    "vote_average": 7.667,
+    "vote_count": 29021,
+    "wikidata_id": "Q192724"
+  },
+  {
+    "id": 603,
+    "title": "The Matrix",
+    "release_date": "1999-03-31",
+    "overview": "Set in the 22nd century, The Matrix tells the story of a computer hacker who joins a group of underground insurgents fighting the vast and powerful computers who now rule the earth.",
+    "genres": [
+      "Action",
+      "Science Fiction"
+    ],
+    "director": [
+      "Lana Wachowski",
+      "Lilly Wachowski"
+    ],
+    "runtime": 136,
+    "vote_average": 8.3,
+    "vote_count": 29003,
+    "wikidata_id": "Q83495"
+  },
+  {
+    "id": 68718,
+    "title": "Django Unchained",
+    "release_date": "2012-12-25",
+    "overview": "With the help of a German bounty hunter, a freed slave sets out to rescue his wife from a brutal Mississippi plantation owner.",
+    "genres": [
+      "Drama",
+      "Western"
+    ],
+    "director": [
+      "Quentin Tarantino"
+    ],
+    "runtime": 165,
+    "vote_average": 8.193,
+    "vote_count": 28803,
+    "wikidata_id": "Q571032"
+  },
+  {
+    "id": 120,
+    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "release_date": "2001-12-18",
+    "overview": "Young hobbit Frodo Baggins, after inheriting a mysterious ring from his uncle Bilbo, must leave his home in order to keep it from falling into the hands of its evil creator. Along the way, a fellowship is formed to protect the ringbearer and make sure that the ring arrives at its final destination: Mt. Doom, the only place where it can be destroyed.",
+    "genres": [
+      "Adventure",
+      "Fantasy",
+      "Action"
+    ],
+    "director": [
+      "Peter Jackson"
+    ],
+    "runtime": 179,
+    "vote_average": 8.447,
+    "vote_count": 28627,
+    "wikidata_id": "Q127367"
+  },
+  {
+    "id": 475557,
+    "title": "Joker",
+    "release_date": "2019-10-01",
+    "overview": "During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure.",
+    "genres": [
+      "Crime",
+      "Thriller",
+      "Drama"
+    ],
+    "director": [
+      "Todd Phillips"
+    ],
+    "runtime": 122,
+    "vote_average": 8.114,
+    "vote_count": 28539,
+    "wikidata_id": "Q42759035"
+  },
+  {
+    "id": 597,
+    "title": "Titanic",
+    "release_date": "1997-12-18",
+    "overview": "101-year-old Rose DeWitt Bukater tells the story of her life aboard the Titanic, 84 years later. A young Rose boards the ship with her mother and fiancé. Meanwhile, Jack Dawson and Fabrizio De Rossi win third-class tickets aboard the ship. Rose tells the whole story from Titanic's departure through to its death—on its first and last voyage—on April 15, 1912.",
+    "genres": [
+      "Drama",
+      "Romance"
+    ],
+    "director": [
+      "James Cameron"
+    ],
+    "runtime": 194,
+    "vote_average": 7.9,
+    "vote_count": 27931,
+    "wikidata_id": "Q44578"
+  },
+  {
+    "id": 122,
+    "title": "The Lord of the Rings: The Return of the King",
+    "release_date": "2003-12-17",
+    "overview": "As armies mass for a final battle that will decide the fate of the world--and powerful, ancient forces of Light and Dark compete to determine the outcome--one member of the Fellowship of the Ring is revealed as the noble heir to the throne of the Kings of Men. Yet, the sole hope for triumph over evil lies with a brave hobbit, Frodo, who, accompanied by his loyal friend Sam and the hideous, wretched Gollum, ventures deep into the very dark heart of Mordor on his seemingly impossible quest to destroy the Ring of Power.​",
+    "genres": [
+      "Adventure",
+      "Fantasy",
+      "Action"
+    ],
+    "director": [
+      "Peter Jackson"
+    ],
+    "runtime": 201,
+    "vote_average": 8.504,
+    "vote_count": 27621,
+    "wikidata_id": "Q131074"
+  },
+  {
+    "id": 106646,
+    "title": "The Wolf of Wall Street",
+    "release_date": "2013-12-25",
+    "overview": "A New York stockbroker refuses to cooperate in a large securities fraud case involving corruption on Wall Street, corporate banking world and mob infiltration. Based on Jordan Belfort's autobiography.",
+    "genres": [
+      "Crime",
+      "Drama",
+      "Comedy"
+    ],
+    "director": [
+      "Martin Scorsese"
+    ],
+    "runtime": 180,
+    "vote_average": 8.027,
+    "vote_count": 26761,
+    "wikidata_id": "Q1392744"
+  },
+  {
+    "id": 99861,
+    "title": "Avengers: Age of Ultron",
+    "release_date": "2015-04-22",
+    "overview": "When Tony Stark tries to jumpstart a dormant peacekeeping program, things go awry and Earth’s Mightiest Heroes are put to the ultimate test as the fate of the planet hangs in the balance. As the villainous Ultron emerges, it is up to The Avengers to stop him from enacting his terrible plans, and soon uneasy alliances and unexpected action pave the way for an epic and unique global adventure.",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Science Fiction"
+    ],
+    "director": [
+      "Joss Whedon"
+    ],
+    "runtime": 141,
+    "vote_average": 7.278,
+    "vote_count": 25203,
+    "wikidata_id": "Q14171368"
+  },
+  {
+    "id": 49026,
+    "title": "The Dark Knight Rises",
+    "release_date": "2012-07-17",
+    "overview": "Following the death of District Attorney Harvey Dent, Batman assumes responsibility for Dent's crimes to protect the late attorney's reputation and is subsequently hunted by the Gotham City Police Department. Eight years later, Batman encounters the mysterious Selina Kyle and the villainous Bane, a new terrorist leader who overwhelms Gotham's finest. The Dark Knight resurfaces to protect a city that has branded him an enemy.",
+    "genres": [
+      "Action",
+      "Crime",
+      "Thriller"
+    ],
+    "director": [
+      "Christopher Nolan"
+    ],
+    "runtime": 165,
+    "vote_average": 7.799,
+    "vote_count": 25148,
+    "wikidata_id": "Q189330"
+  },
+  {
+    "id": 16869,
+    "title": "Inglourious Basterds",
+    "release_date": "2009-08-02",
+    "overview": "In Nazi-occupied France during World War II, a group of Jewish-American soldiers known as \"The Basterds\" are chosen specifically to spread fear throughout the Third Reich by scalping and brutally killing Nazis. The Basterds, lead by Lt. Aldo Raine soon cross paths with a French-Jewish teenage girl who runs a movie theater in Paris which is targeted by the soldiers.",
+    "genres": [
+      "Drama",
+      "Thriller",
+      "War"
+    ],
+    "director": [
+      "Quentin Tarantino"
+    ],
+    "runtime": 153,
+    "vote_average": 8.217,
+    "vote_count": 24983,
+    "wikidata_id": "Q153723"
+  },
+  {
+    "id": 76341,
+    "title": "Mad Max: Fury Road",
+    "release_date": "2015-05-13",
+    "overview": "An apocalyptic story set in the furthest reaches of our planet, in a stark desert landscape where humanity is broken, and most everyone is crazed fighting for the necessities of life. Within this world exist two rebels on the run who just might be able to restore order.",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Science Fiction"
+    ],
+    "director": [
+      "George Miller"
+    ],
+    "runtime": 121,
+    "vote_average": 7.641,
+    "vote_count": 24805,
+    "wikidata_id": "Q1757288"
+  },
+  {
+    "id": 121,
+    "title": "The Lord of the Rings: The Two Towers",
+    "release_date": "2002-12-18",
+    "overview": "Frodo Baggins and the other members of the Fellowship continue on their sacred quest to destroy the One Ring--but on separate paths. Their destinies lie at two towers--Orthanc Tower in Isengard, where the corrupt wizard Saruman awaits, and Sauron's fortress at Barad-dur, deep within the dark lands of Mordor.",
+    "genres": [
+      "Adventure",
+      "Fantasy",
+      "Action"
+    ],
+    "director": [
+      "Peter Jackson"
+    ],
+    "runtime": 179,
+    "vote_average": 8.431,
+    "vote_count": 24790,
+    "wikidata_id": "Q164963"
+  },
+  {
+    "id": 271110,
+    "title": "Captain America: Civil War",
+    "release_date": "2016-04-27",
+    "overview": "Following the events of Age of Ultron, the collective governments of the world pass an act designed to regulate all superhuman activity. This polarizes opinion amongst the Avengers, causing two factions to side with Iron Man or Captain America, which causes an epic battle between former allies.",
+    "genres": [
+      "Adventure",
+      "Action",
+      "Science Fiction"
+    ],
+    "director": [
+      "Joe Russo",
+      "Anthony Russo"
+    ],
+    "runtime": 147,
+    "vote_average": 7.454,
+    "vote_count": 24729,
+    "wikidata_id": "Q18407657"
+  },
+  {
+    "id": 672,
+    "title": "Harry Potter and the Chamber of Secrets",
+    "release_date": "2002-11-13",
+    "overview": "Cars fly, trees fight back, and a mysterious house-elf comes to warn Harry Potter at the start of his second year at Hogwarts. Adventure and danger await when bloody writing on a wall announces: The Chamber Of Secrets Has Been Opened. To save Hogwarts will require all of Harry, Ron and Hermione's magical abilities and courage.",
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ],
+    "director": [
+      "Chris Columbus"
+    ],
+    "runtime": 161,
+    "vote_average": 7.709,
+    "vote_count": 24247,
+    "wikidata_id": "Q102244"
+  },
+  {
+    "id": 284054,
+    "title": "Black Panther",
+    "release_date": "2018-02-13",
+    "overview": "King T'Challa returns home to the reclusive, technologically advanced African nation of Wakanda to serve as his country's new leader. However, T'Challa soon finds that he is challenged for the throne by factions within his own country as well as without. Using powers reserved to Wakandan kings, T'Challa assumes the Black Panther mantle to join with ex-girlfriend Nakia, the queen-mother, his princess-kid sister, members of the Dora Milaje (the Wakandan 'special forces') and an American secret agent, to prevent Wakanda from being dragged into a world war.",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Science Fiction"
+    ],
+    "director": [
+      "Ryan Coogler"
+    ],
+    "runtime": 135,
+    "vote_average": 7.36,
+    "vote_count": 24116,
+    "wikidata_id": "Q23780734"
+  },
+  {
+    "id": 315635,
+    "title": "Spider-Man: Homecoming",
+    "release_date": "2017-07-05",
+    "overview": "Following the events of Captain America: Civil War, Peter Parker, with the help of his mentor Tony Stark, tries to balance his life as an ordinary high school student in Queens, New York City, with fighting crime as his superhero alter ego Spider-Man as a new threat, the Vulture, emerges.",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Science Fiction"
+    ],
+    "director": [
+      "Jon Watts"
+    ],
+    "runtime": 133,
+    "vote_average": 7.332,
+    "vote_count": 24097,
+    "wikidata_id": "Q23010088"
+  },
+  {
+    "id": 284052,
+    "title": "Doctor Strange",
+    "release_date": "2016-10-25",
+    "overview": "After his career is destroyed, a brilliant but arrogant surgeon gets a new lease on life when a sorcerer takes him under her wing and trains him to defend the world against evil.",
+    "genres": [
+      "Fantasy",
+      "Adventure",
+      "Action"
+    ],
+    "director": [
+      "Scott Derrickson"
+    ],
+    "runtime": 115,
+    "vote_average": 7.426,
+    "vote_count": 24086,
+    "wikidata_id": "Q18406872"
+  },
+  {
+    "id": 150540,
+    "title": "Inside Out",
+    "release_date": "2015-06-17",
+    "overview": "When 11-year-old Riley moves to a new city, her Emotions team up to help her through the transition. Joy, Fear, Anger, Disgust and Sadness work together, but when Joy and Sadness get lost, they must journey through unfamiliar places to get back home.",
+    "genres": [
+      "Animation",
+      "Family",
+      "Adventure",
+      "Drama",
+      "Comedy"
+    ],
+    "director": [
+      "Pete Docter"
+    ],
+    "runtime": 95,
+    "vote_average": 7.906,
+    "vote_count": 24046,
+    "wikidata_id": "Q6144664"
+  },
+  {
+    "id": 807,
+    "title": "Se7en",
+    "release_date": "1995-09-22",
+    "overview": "Two homicide detectives are on a desperate hunt for a serial killer whose crimes are based on the \"seven deadly sins\" in this dark and haunting film that takes viewers from the tortured remains of one victim to the next. The seasoned Det. Somerset researches each sin in an effort to get inside the killer's mind, while his novice partner, Mills, scoffs at his efforts to unravel the case.",
+    "genres": [
+      "Crime",
+      "Mystery",
+      "Thriller"
+    ],
+    "director": [
+      "David Fincher"
+    ],
+    "runtime": 127,
+    "vote_average": 8.382,
+    "vote_count": 24018,
+    "wikidata_id": "Q190908"
+  },
+  {
+    "id": 70160,
+    "title": "The Hunger Games",
+    "release_date": "2012-03-12",
+    "overview": "In a dystopian society where the Capitol forces each district to send two young tributes to fight to the death in a televised spectacle, a girl volunteers to take her sister’s place, setting the stage for a struggle of survival and defiance.",
+    "genres": [
+      "Science Fiction",
+      "Adventure",
+      "Action",
+      "Thriller"
+    ],
+    "director": [
+      "Gary Ross"
+    ],
+    "runtime": 142,
+    "vote_average": 7.2,
+    "vote_count": 23874,
+    "wikidata_id": "Q212965"
+  },
+  {
+    "id": 673,
+    "title": "Harry Potter and the Prisoner of Azkaban",
+    "release_date": "2004-05-31",
+    "overview": "Harry Potter's life is in danger once more as dangerous wizard Sirius Black has escaped from Azkaban Prison and is heading to Hogwarts.",
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ],
+    "director": [
+      "Alfonso Cuarón"
+    ],
+    "runtime": 141,
+    "vote_average": 8.013,
+    "vote_count": 23821,
+    "wikidata_id": "Q102448"
+  },
+  {
+    "id": 238,
+    "title": "The Godfather",
+    "release_date": "1972-03-14",
+    "overview": "Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.",
+    "genres": [
+      "Drama",
+      "Crime"
+    ],
+    "director": [
+      "Francis Ford Coppola"
+    ],
+    "runtime": 175,
+    "vote_average": 8.69,
+    "vote_count": 23797,
+    "wikidata_id": "Q47703"
+  },
+  {
+    "id": 283995,
+    "title": "Guardians of the Galaxy Vol. 2",
+    "release_date": "2017-04-25",
+    "overview": "The Guardians must fight to keep their newfound family together as they unravel the mysteries of Peter Quill's true parentage.",
+    "genres": [
+      "Science Fiction",
+      "Adventure",
+      "Action"
+    ],
+    "director": [
+      "James Gunn"
+    ],
+    "runtime": 137,
+    "vote_average": 7.609,
+    "vote_count": 23609,
+    "wikidata_id": "Q20001199"
+  },
+  {
+    "id": 1771,
+    "title": "Captain America: The First Avenger",
+    "release_date": "2011-07-22",
+    "overview": "During World War II, Steve Rogers is a sickly man from Brooklyn who's transformed into super-soldier Captain America to aid in the war effort. Rogers must stop the Red Skull – Adolf Hitler's ruthless head of weaponry, and the leader of an organization that intends to use a mysterious device of untold powers for world domination.",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Science Fiction"
+    ],
+    "director": [
+      "Joe Johnston"
+    ],
+    "runtime": 124,
+    "vote_average": 7.013,
+    "vote_count": 23404,
+    "wikidata_id": "Q275120"
+  },
+  {
+    "id": 634649,
+    "title": "Spider-Man: No Way Home",
+    "release_date": "2021-12-15",
+    "overview": "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Science Fiction"
+    ],
+    "director": [
+      "Jon Watts"
+    ],
+    "runtime": 148,
+    "vote_average": 7.947,
+    "vote_count": 23371,
+    "wikidata_id": "Q68934496"
+  },
+  {
+    "id": 272,
+    "title": "Batman Begins",
+    "release_date": "2005-06-10",
+    "overview": "Driven by tragedy, billionaire Bruce Wayne dedicates his life to uncovering and defeating the corruption that plagues his home, Gotham City.  Unable to work within the system, he instead creates a new identity, a symbol of fear for the criminal underworld - The Batman.",
+    "genres": [
+      "Drama",
+      "Crime",
+      "Action"
+    ],
+    "director": [
+      "Christopher Nolan"
+    ],
+    "runtime": 140,
+    "vote_average": 7.731,
+    "vote_count": 23364,
+    "wikidata_id": "Q166262"
+  },
+  {
+    "id": 11,
+    "title": "Star Wars",
+    "release_date": "1977-05-25",
+    "overview": "Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire. Venturesome Luke Skywalker and dashing captain Han Solo team together with the loveable robot duo R2-D2 and C-3PO to rescue the beautiful princess and restore peace and justice in the Empire.",
+    "genres": [
+      "Adventure",
+      "Action",
+      "Science Fiction"
+    ],
+    "director": [
+      "George Lucas"
+    ],
+    "runtime": 121,
+    "vote_average": 8.208,
+    "vote_count": 23039,
+    "wikidata_id": "Q17738"
+  },
+  {
+    "id": 22,
+    "title": "Pirates of the Caribbean: The Curse of the Black Pearl",
+    "release_date": "2003-07-09",
+    "overview": "When wily pirate Captain Barbossa seizes Jack Sparrow’s beloved ship, the Black Pearl, and kidnaps the governor’s daughter, Elizabeth Swann, blacksmith Will Turner reluctantly teams up with the unpredictable pirate Jack to rescue her—only to uncover a terrifying curse that turns Barbossa’s crew into the undead.",
+    "genres": [
+      "Adventure",
+      "Fantasy",
+      "Action"
+    ],
+    "director": [
+      "Gore Verbinski"
+    ],
+    "runtime": 143,
+    "vote_average": 7.836,
+    "vote_count": 22943,
+    "wikidata_id": "Q46717"
+  },
+  {
+    "id": 674,
+    "title": "Harry Potter and the Goblet of Fire",
+    "release_date": "2005-11-16",
+    "overview": "When his name emerges from the Goblet of Fire, Harry Potter becomes a competitor in a grueling battle for glory among three wizarding schools. Signs of Voldemort's return emerge as Harry's friends help him prepare for the Triwizard Tournament.",
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ],
+    "director": [
+      "Mike Newell"
+    ],
+    "runtime": 157,
+    "vote_average": 7.803,
+    "vote_count": 22794,
+    "wikidata_id": "Q102225"
+  },
+  {
+    "id": 284053,
+    "title": "Thor: Ragnarok",
+    "release_date": "2017-10-24",
+    "overview": "Thor is imprisoned on the other side of the universe and finds himself in a race against time to get back to Asgard to stop Ragnarok, the destruction of his home-world and the end of Asgardian civilization, at the hands of a powerful new threat, the ruthless Hela.",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Comedy",
+      "Science Fiction"
+    ],
+    "director": [
+      "Taika Waititi"
+    ],
+    "runtime": 131,
+    "vote_average": 7.578,
+    "vote_count": 22644,
+    "wikidata_id": "Q22665878"
+  },
+  {
+    "id": 105,
+    "title": "Back to the Future",
+    "release_date": "1985-07-03",
+    "overview": "Eighties teenager Marty McFly is accidentally sent back in time to 1955, inadvertently disrupting his parents' first meeting and attracting his mother's romantic interest. Marty must repair the damage to history by rekindling his parents' romance and - with the help of his eccentric inventor friend Doc Brown - return to 1985.",
+    "genres": [
+      "Adventure",
+      "Comedy",
+      "Science Fiction"
+    ],
+    "director": [
+      "Robert Zemeckis"
+    ],
+    "runtime": 116,
+    "vote_average": 8.3,
+    "vote_count": 22605,
+    "wikidata_id": "Q91540"
+  },
+  {
+    "id": 12445,
+    "title": "Harry Potter and the Deathly Hallows: Part 2",
+    "release_date": "2011-07-12",
+    "overview": "Harry, Ron and Hermione continue their quest to vanquish the evil Voldemort once and for all. Just as things begin to look hopeless for the young wizards, Harry discovers a trio of magical objects that endow him with powers to rival Voldemort's formidable skills.",
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ],
+    "director": [
+      "David Yates"
+    ],
+    "runtime": 130,
+    "vote_average": 8.081,
+    "vote_count": 22598,
+    "wikidata_id": "Q232009"
+  },
+  {
+    "id": 14160,
+    "title": "Up",
+    "release_date": "2009-05-28",
+    "overview": "Carl Fredricksen spent his entire life dreaming of exploring the globe and experiencing life to its fullest. But at age 78, life seems to have passed him by, until a twist of fate (and a persistent 8-year old Wilderness Explorer named Russell) gives him a new lease on life.",
+    "genres": [
+      "Animation",
+      "Comedy",
+      "Family",
+      "Adventure"
+    ],
+    "director": [
+      "Pete Docter"
+    ],
+    "runtime": 96,
+    "vote_average": 7.961,
+    "vote_count": 22288,
+    "wikidata_id": "Q174811"
+  },
+  {
+    "id": 98,
+    "title": "Gladiator",
+    "release_date": "2000-05-04",
+    "overview": "After the death of Emperor Marcus Aurelius, his devious son takes power and demotes Maximus, one of Rome's most capable generals who Marcus preferred. Eventually, Maximus is forced to become a gladiator and battle to the death against other men for the amusement of paying audiences.",
+    "genres": [
+      "Action",
+      "Drama",
+      "Adventure"
+    ],
+    "director": [
+      "Ridley Scott"
+    ],
+    "runtime": 155,
+    "vote_average": 8.232,
+    "vote_count": 21703,
+    "wikidata_id": "Q128518"
+  },
+  {
+    "id": 557,
+    "title": "Spider-Man",
+    "release_date": "2002-05-01",
+    "overview": "After being bitten by a genetically altered spider at Oscorp, nerdy but endearing high school student Peter Parker is endowed with amazing powers to become the superhero known as Spider-Man.",
+    "genres": [
+      "Action",
+      "Science Fiction"
+    ],
+    "director": [
+      "Sam Raimi"
+    ],
+    "runtime": 121,
+    "vote_average": 7.359,
+    "vote_count": 21615,
+    "wikidata_id": "Q484442"
+  },
+  {
+    "id": 354912,
+    "title": "Coco",
+    "release_date": "2017-10-27",
+    "overview": "Despite his family’s baffling generations-old ban on music, Miguel dreams of becoming an accomplished musician like his idol, Ernesto de la Cruz. Desperate to prove his talent, Miguel finds himself in the stunning and colorful Land of the Dead following a mysterious chain of events. Along the way, he meets charming trickster Hector, and together, they set off on an extraordinary journey to unlock the real story behind Miguel's family history.",
+    "genres": [
+      "Family",
+      "Animation",
+      "Music",
+      "Adventure"
+    ],
+    "director": [
+      "Lee Unkrich"
+    ],
+    "runtime": 105,
+    "vote_average": 8.201,
+    "vote_count": 21584,
+    "wikidata_id": "Q5815826"
+  },
+  {
+    "id": 496243,
+    "title": "Parasite",
+    "release_date": "2019-05-30",
+    "overview": "All unemployed, Ki-taek's family takes peculiar interest in the wealthy and glamorous Parks for their livelihood until they get entangled in an unexpected incident.",
+    "genres": [
+      "Comedy",
+      "Thriller",
+      "Drama"
+    ],
+    "director": [
+      "Bong Joon Ho"
+    ],
+    "runtime": 133,
+    "vote_average": 8.5,
+    "vote_count": 21522,
+    "wikidata_id": "Q61448040"
+  },
+  {
+    "id": 245891,
+    "title": "John Wick",
+    "release_date": "2014-10-16",
+    "overview": "Ex-hitman John Wick comes out of retirement to track down the gangsters that took everything from him.",
+    "genres": [
+      "Action",
+      "Thriller"
+    ],
+    "director": [
+      "Chad Stahelski"
+    ],
+    "runtime": 101,
+    "vote_average": 7.466,
+    "vote_count": 21496,
+    "wikidata_id": "Q15732802"
+  },
+  {
+    "id": 102899,
+    "title": "Ant-Man",
+    "release_date": "2015-07-14",
+    "overview": "Armed with the astonishing ability to shrink in scale but increase in strength, master thief Scott Lang must embrace his inner-hero and help his mentor, Doctor Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats. Against seemingly insurmountable obstacles, Pym and Lang must plan and pull off a heist that will save the world.",
+    "genres": [
+      "Science Fiction",
+      "Adventure",
+      "Action"
+    ],
+    "director": [
+      "Peyton Reed"
+    ],
+    "runtime": 117,
+    "vote_average": 7.066,
+    "vote_count": 21379,
+    "wikidata_id": "Q5901134"
+  },
+  {
+    "id": 675,
+    "title": "Harry Potter and the Order of the Phoenix",
+    "release_date": "2007-07-08",
+    "overview": "When a new professor's methods leave Hogwarts unprepared to fight the rising tide of evil, Harry teaches students how to defend against the dark arts.",
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ],
+    "director": [
+      "David Yates"
+    ],
+    "runtime": 138,
+    "vote_average": 7.673,
+    "vote_count": 21368,
+    "wikidata_id": "Q102235"
+  },
+  {
+    "id": 767,
+    "title": "Harry Potter and the Half-Blood Prince",
+    "release_date": "2009-07-15",
+    "overview": "Dumbledore tries to prepare Harry for the final battle with Voldemort while Death Eaters wreak havoc in both Muggle and Wizard worlds.",
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ],
+    "director": [
+      "David Yates"
+    ],
+    "runtime": 153,
+    "vote_average": 7.682,
+    "vote_count": 21328,
+    "wikidata_id": "Q161687"
+  },
+  {
+    "id": 297762,
+    "title": "Wonder Woman",
+    "release_date": "2017-05-30",
+    "overview": "An Amazon princess comes to the world of Man in the grips of the First World War to confront the forces of evil and bring an end to human conflict.",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Fantasy"
+    ],
+    "director": [
+      "Patty Jenkins"
+    ],
+    "runtime": 141,
+    "vote_average": 7.2,
+    "vote_count": 21308,
+    "wikidata_id": "Q20502242"
+  },
+  {
+    "id": 12,
+    "title": "Finding Nemo",
+    "release_date": "2003-05-30",
+    "overview": "Nemo, an adventurous young clownfish, is unexpectedly taken from his Great Barrier Reef home to a dentist's office aquarium. It's up to his worrisome father Marlin and a friendly but forgetful fish Dory to bring Nemo home -- meeting vegetarian sharks, surfer dude turtles, hypnotic jellyfish, hungry seagulls, and more along the way.",
+    "genres": [
+      "Animation",
+      "Family",
+      "Adventure"
+    ],
+    "director": [
+      "Andrew Stanton"
+    ],
+    "runtime": 100,
+    "vote_average": 7.822,
+    "vote_count": 21123,
+    "wikidata_id": "Q132863"
+  },
+  {
+    "id": 10681,
+    "title": "WALL·E",
+    "release_date": "2008-06-26",
+    "overview": "After hundreds of years doing what he was built for, WALL•E— a robot designed to clean up the earth—discovers a new purpose in life when he meets a sleek search robot named EVE. EVE comes to realize that WALL•E has inadvertently stumbled upon the key to the planet's future, and races back to space to report to the humans. Meanwhile, WALL•E chases EVE across the galaxy and sets into motion one of the most imaginative adventures ever brought to the big screen.",
+    "genres": [
+      "Animation",
+      "Family",
+      "Science Fiction"
+    ],
+    "director": [
+      "Andrew Stanton"
+    ],
+    "runtime": 98,
+    "vote_average": 8.127,
+    "vote_count": 21059,
+    "wikidata_id": "Q104905"
+  },
+  {
+    "id": 140607,
+    "title": "Star Wars: The Force Awakens",
+    "release_date": "2015-12-15",
+    "overview": "Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.",
+    "genres": [
+      "Adventure",
+      "Action",
+      "Science Fiction"
+    ],
+    "director": [
+      "J.J. Abrams"
+    ],
+    "runtime": 136,
+    "vote_average": 7.24,
+    "vote_count": 21035,
+    "wikidata_id": "Q6074"
+  },
+  {
+    "id": 263115,
+    "title": "Logan",
+    "release_date": "2017-02-28",
+    "overview": "In the near future, a weary Logan cares for an ailing Professor X in a hideout on the Mexican border. But Logan's attempts to hide from the world and his legacy are upended when a young mutant arrives, pursued by dark forces.",
+    "genres": [
+      "Action",
+      "Drama",
+      "Science Fiction"
+    ],
+    "director": [
+      "James Mangold"
+    ],
+    "runtime": 137,
+    "vote_average": 7.821,
+    "vote_count": 20973,
+    "wikidata_id": "Q24053263"
+  },
+  {
+    "id": 12444,
+    "title": "Harry Potter and the Deathly Hallows: Part 1",
+    "release_date": "2010-11-17",
+    "overview": "Harry, Ron and Hermione walk away from their last year at Hogwarts to find and destroy the remaining Horcruxes, putting an end to Voldemort's bid for immortality. But with Harry's beloved Dumbledore dead and Voldemort's unscrupulous Death Eaters on the loose, the world is more dangerous than ever.",
+    "genres": [
+      "Adventure",
+      "Fantasy"
+    ],
+    "director": [
+      "David Yates"
+    ],
+    "runtime": 146,
+    "vote_average": 7.733,
+    "vote_count": 20934,
+    "wikidata_id": "Q161678"
+  },
+  {
+    "id": 346364,
+    "title": "It",
+    "release_date": "2017-09-06",
+    "overview": "In a small town in Maine, seven children known as The Losers Club come face to face with life problems, bullies and a monster that takes the shape of a clown called Pennywise.",
+    "genres": [
+      "Horror",
+      "Thriller",
+      "Drama"
+    ],
+    "director": [
+      "Andy Muschietti"
+    ],
+    "runtime": 135,
+    "vote_average": 7.2,
+    "vote_count": 20783,
+    "wikidata_id": "Q25136484"
+  },
+  {
+    "id": 862,
+    "title": "Toy Story",
+    "release_date": "1995-11-22",
+    "overview": "Led by Woody, Andy's toys live happily in his room until Andy's birthday brings Buzz Lightyear onto the scene. Afraid of losing his place in Andy's heart, Woody plots against Buzz. But when circumstances separate Buzz and Woody from their owner, the duo eventually learns to put aside their differences.",
+    "genres": [
+      "Family",
+      "Comedy",
+      "Animation",
+      "Adventure"
+    ],
+    "director": [
+      "John Lasseter"
+    ],
+    "runtime": 81,
+    "vote_average": 7.99,
+    "vote_count": 20699,
+    "wikidata_id": "Q171048"
+  },
+  {
+    "id": 100402,
+    "title": "Captain America: The Winter Soldier",
+    "release_date": "2014-03-20",
+    "overview": "After the cataclysmic events in New York with The Avengers, Steve Rogers, aka Captain America is living quietly in Washington, D.C. and trying to adjust to the modern world. But when a S.H.I.E.L.D. colleague comes under attack, Steve becomes embroiled in a web of intrigue that threatens to put the world at risk. Joining forces with the Black Widow, Captain America struggles to expose the ever-widening conspiracy while fighting off professional assassins sent to silence him at every turn. When the full scope of the villainous plot is revealed, Captain America and the Black Widow enlist the help of a new ally, the Falcon. However, they soon find themselves up against an unexpected and formidable enemy—the Winter Soldier.",
+    "genres": [
+      "Action",
+      "Adventure",
+      "Science Fiction"
+    ],
+    "director": [
+      "Joe Russo",
+      "Anthony Russo"
+    ],
+    "runtime": 136,
+    "vote_average": 7.654,
+    "vote_count": 20610,
+    "wikidata_id": "Q1765358"
+  },
+  {
+    "id": 210577,
+    "title": "Gone Girl",
+    "release_date": "2014-10-01",
+    "overview": "With his wife's disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it's suspected that he may not be innocent.",
+    "genres": [
+      "Mystery",
+      "Thriller",
+      "Drama"
+    ],
+    "director": [
+      "David Fincher"
+    ],
+    "runtime": 149,
+    "vote_average": 7.89,
+    "vote_count": 20558,
+    "wikidata_id": "Q14920425"
+  },
+  {
+    "id": 585,
+    "title": "Monsters, Inc.",
+    "release_date": "2001-11-01",
+    "overview": "Lovable Sulley and his wisecracking sidekick Mike Wazowski are the top scare team at Monsters, Inc., the scream-processing factory in Monstropolis. When a little girl named Boo wanders into their world, it's the monsters who are scared silly, and it's up to Sulley and Mike to keep her out of sight and get her back home.",
+    "genres": [
+      "Animation",
+      "Comedy",
+      "Family",
+      "Fantasy"
+    ],
+    "director": [
+      "Pete Docter"
+    ],
+    "runtime": 92,
+    "vote_average": 7.859,
+    "vote_count": 20409,
+    "wikidata_id": "Q187726"
   }
 ]

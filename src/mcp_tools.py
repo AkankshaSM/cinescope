@@ -1,5 +1,5 @@
-
 import asyncio
+import json
 import os
 import sys
 from pathlib import Path
@@ -40,9 +40,7 @@ async def get_tavily_tools():
     return await client.get_tools()
 
 
-async def search_web(query: str) -> str:
-    """Execute a real Tavily MCP search."""
-
+async def search_web(query: str) -> dict:
     tools = await get_tavily_tools()
 
     search_tool = next(
@@ -54,15 +52,40 @@ async def search_web(query: str) -> str:
     )
 
     if search_tool is None:
-        raise RuntimeError(
-            "Tavily MCP server did not expose a search tool"
-        )
+        raise RuntimeError("Tavily search tool unavailable")
 
     result = await search_tool.ainvoke({
         "query": query,
     })
 
-    return str(result)
+    if isinstance(result, list):
+        text = "\n".join(
+            item.get("text", "")
+            for item in result
+            if isinstance(item, dict)
+            and item.get("type") == "text"
+        )
+    else:
+        text = str(result)
+
+    payload = json.loads(text)
+
+    if "error" in payload:
+        raise RuntimeError(
+            f"Tavily search failed: {payload.get('detail', payload['error'])}"
+        )
+
+    return {
+        "query": query,
+        "results": [
+            {
+                "title": item.get("title", ""),
+                "url": item.get("url", ""),
+                "content": item.get("content", ""),
+            }
+            for item in payload.get("results", [])
+        ],
+    }
 
 
 async def main():

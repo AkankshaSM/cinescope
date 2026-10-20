@@ -30,6 +30,9 @@ class SupervisorDecision(BaseModel):
     complexity: Complexity = Field(
         description="Simple for direct lookups; complex for multi-step reasoning"
     )
+    research_use_web: bool = Field(
+        description="Whether Research needs external web evidence"
+    )
     reason: str = Field(
         description="Explanation of the routing decision"
     )
@@ -40,6 +43,7 @@ class CineScopeState(TypedDict):
     selected_agents: list[AgentName]
     pending_agents: list[AgentName]
     complexity: Complexity
+    research_use_web: bool
     routing_reason: str
     results: list[dict]
     trace: list[dict]
@@ -79,6 +83,16 @@ Rules:
 - Questions about finding movies should include discovery.
 - Do not select agents merely because a movie is mentioned.
 - Explain the decision clearly.
+
+Set research_use_web=true when:
+- The user explicitly requests external research.
+- The question requires film analysis beyond the local corpus.
+- The user requests a comparison involving movies not covered
+  by the local research corpus.
+
+Otherwise set research_use_web=false.
+
+The News Agent always uses live web search.
 """
 
 
@@ -102,11 +116,13 @@ async def supervisor_node(state: CineScopeState) -> dict:
         "selected_agents": selected,
         "pending_agents": selected.copy(),
         "complexity": decision.complexity,
+        "research_use_web": decision.research_use_web,
         "routing_reason": decision.reason,
         "trace": [{
             "node": "supervisor",
             "selected_agents": selected,
             "complexity": decision.complexity,
+            "research_use_web": decision.research_use_web,
             "reason": decision.reason,
             "routing": decision_model.to_dict(),
         }],
@@ -137,6 +153,8 @@ def worker_update(
 
     if result.get("model_calls"):
         trace_entry["model_calls"] = result["model_calls"]
+    if result.get("tool_calls"):
+        trace_entry["tool_calls"] = result["tool_calls"]
 
     return {
         "pending_agents": pending,
@@ -150,6 +168,7 @@ async def research_node(state: CineScopeState) -> dict:
         result = await research_agent(
             state["question"],
             complexity=state["complexity"],
+            use_web=state["research_use_web"],
         )
     except Exception as error:
         result = {
@@ -241,6 +260,7 @@ async def synthesis_node(state: CineScopeState) -> dict:
     )
 
     llm = create_llm(decision)
+    llm.streaming = True
 
     try:
         response = await llm.ainvoke([
@@ -316,6 +336,7 @@ async def run_cinescope(question: str) -> dict:
         "selected_agents": [],
         "pending_agents": [],
         "complexity": "simple",
+        "research_use_web": False,
         "routing_reason": "",
         "results": [],
         "trace": [],

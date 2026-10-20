@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field
 
 from src.movie_tools import search_movies
 from src.rag import retrieve, build_context
-from src.mcp_tools import get_tavily_tools
+from src.mcp_tools import search_web
 from src.model_router import (
     Complexity,
     select_model,
@@ -146,23 +146,78 @@ async def generate_answer(
 async def research_agent(
     question: str,
     complexity: Complexity = "complex",
+    use_web: bool = False,
 ) -> dict:
     try:
         documents = await asyncio.to_thread(
             retrieve, question, 5
         )
 
-        if not documents:
+        context = build_context(documents) if documents else ""
+        sources = [
+            {
+                "title": doc["title"],
+                "url": doc["source"],
+                "chunk_id": doc["id"],
+            }
+            for doc in documents
+        ]
+
+        tool_calls = [{
+            "tool": "chroma",
+            "operation": "similarity_search",
+            "status": "success",
+            "collection": "movie_research",
+            "chunks_retrieved": len(documents),
+            "purpose": "movie_research",
+        }]
+
+        if use_web:
+            try:
+                web_data = await search_web(question)
+
+                context += (
+                    "\n\nExternal research:\n"
+                    + json.dumps(
+                        web_data["results"],
+                        ensure_ascii=False,
+                    )
+                )
+
+                sources.extend([
+                    {
+                        "title": item["title"],
+                        "url": item["url"],
+                    }
+                    for item in web_data["results"]
+                ])
+
+                tool_calls.append({
+                    "tool": "tavily_search",
+                    "status": "success",
+                    "purpose": "external_movie_research",
+                })
+
+            except Exception as error:
+                tool_calls.append({
+                    "tool": "tavily_search",
+                    "status": "error",
+                    "purpose": "external_movie_research",
+                    "error": str(error),
+                })
+
+        if not context.strip():
             return {
                 "agent": "research",
-                "answer": "No relevant movie documents found.",
+                "answer": "No research evidence was available.",
                 "sources": [],
+                "tool_calls": tool_calls,
             }
 
         generation = await generate_answer(
             RESEARCH_PROMPT,
             question,
-            build_context(documents),
+            context,
             "research",
             complexity,
         )
@@ -170,14 +225,8 @@ async def research_agent(
         return {
             "agent": "research",
             **generation,
-            "sources": [
-                {
-                    "title": doc["title"],
-                    "url": doc["source"],
-                    "chunk_id": doc["id"],
-                }
-                for doc in documents
-            ],
+            "sources": sources,
+            "tool_calls": tool_calls,
         }
 
     except Exception as error:
@@ -187,6 +236,7 @@ async def research_agent(
             "sources": [],
             "error": str(error),
         }
+
 
 
 async def discovery_agent(
@@ -222,6 +272,15 @@ async def discovery_agent(
             **selected_filters,
         )
 
+        tool_calls = [{
+            "tool": "sqlite",
+            "operation": "search_movies",
+            "status": "success",
+            "filters": selected_filters,
+            "movies_found": len(movies),
+            "purpose": "movie_discovery",
+        }]
+
         if not movies:
             return {
                 "agent": "discovery",
@@ -248,6 +307,7 @@ async def discovery_agent(
             "agent": "discovery",
             **generation,
             "filters": selected_filters,
+            "tool_calls": tool_calls,
             "movies": movies,
             "model_calls": [
                 {
@@ -265,6 +325,7 @@ async def discovery_agent(
         return {
             "agent": "discovery",
             "answer": "Movie discovery is temporarily unavailable.",
+            "tool_calls": tool_calls,
             "movies": [],
             "error": str(error),
         }
@@ -283,41 +344,21 @@ def parse_mcp_result(result):
     return str(result)
 
 
+
 async def news_agent(
     question: str,
     complexity: Complexity = "simple",
 ) -> dict:
     try:
-        tools = await get_tavily_tools()
-
-        search_tool = next(
-            (
-                tool for tool in tools
-                if "search" in tool.name.lower()
-            ),
-            None,
-        )
-
-        if search_tool is None:
-            raise RuntimeError("Tavily search tool unavailable")
-
-        result = await search_tool.ainvoke({
-            "query": question,
-        })
-
-        context = parse_mcp_result(result)
-
-        payload = json.loads(context)
-
-        if isinstance(payload, dict) and "error" in payload:
-            raise RuntimeError(
-                f"Tavily search failed: {payload['error']}"
-            )
+        web_data = await search_web(question)
 
         generation = await generate_answer(
             NEWS_PROMPT,
             question,
-            context,
+            json.dumps(
+                web_data["results"],
+                ensure_ascii=False,
+            ),
             "news",
             complexity,
         )
@@ -325,7 +366,20 @@ async def news_agent(
         return {
             "agent": "news",
             **generation,
-            "sources": context,
+            "sources": [
+                {
+                    "title": item["title"],
+                    "url": item["url"],
+                }
+                for item in web_data["results"]
+            ],
+            "tool_calls": [{
+                "tool": "tavily_search",
+                "status": "success",
+                "purpose": "current_movie_news",
+                "provider": "Tavily Remote MCP",
+                "results_found": len(web_data["results"]),
+            }],
         }
 
     except Exception as error:
@@ -333,6 +387,12 @@ async def news_agent(
             "agent": "news",
             "answer": "Current movie news could not be verified.",
             "sources": [],
+            "tool_calls": [{
+                "tool": "tavily_search",
+                "status": "error",
+                "purpose": "current_movie_news",
+                "error": str(error),
+            }],
             "error": str(error),
         }
 

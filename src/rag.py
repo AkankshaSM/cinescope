@@ -4,6 +4,7 @@ import sys
 from pathlib import Path
 
 import chromadb
+import asyncio
 from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
@@ -169,4 +170,4 @@ async def main():
 
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

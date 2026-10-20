@@ -3,17 +3,29 @@ import json
 import sqlite3
 from pathlib import Path
 
-INPUT_PATH = Path("data/raw/movies.json")
-DATABASE_PATH = Path("data/movies.db")
+ROOT_DIR = Path(__file__).resolve().parent.parent
+INPUT_PATH = ROOT_DIR / "data/raw/movies.json"
+DATABASE_PATH = ROOT_DIR / "data/movies.db"
 
 
 def main():
-    with INPUT_PATH.open("r", encoding="utf-8") as file:
-        movies = json.load(file)
+    movies = json.loads(
+        INPUT_PATH.read_text(encoding="utf-8")
+    )
 
-    DATABASE_PATH.parent.mkdir(parents=True, exist_ok=True)
+    ids = [movie["id"] for movie in movies]
+
+    if len(ids) != len(set(ids)):
+        raise ValueError("Duplicate TMDB movie IDs found")
+
+    DATABASE_PATH.parent.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
 
     with sqlite3.connect(DATABASE_PATH) as connection:
+        connection.execute("PRAGMA foreign_keys = ON")
+
         connection.execute("""
             CREATE TABLE IF NOT EXISTS movies (
                 id INTEGER PRIMARY KEY,
@@ -35,6 +47,17 @@ def main():
                 FOREIGN KEY (movie_id) REFERENCES movies(id)
             )
         """)
+
+        connection.execute("""
+            CREATE TEMP TABLE current_movie_ids (
+                id INTEGER PRIMARY KEY
+            )
+        """)
+
+        connection.executemany(
+            "INSERT INTO current_movie_ids (id) VALUES (?)",
+            [(movie_id,) for movie_id in ids],
+        )
 
         for movie in movies:
             connection.execute(
@@ -81,7 +104,31 @@ def main():
                 ],
             )
 
-    print(f"Saved {len(movies)} movies to {DATABASE_PATH}")
+        connection.execute("""
+            DELETE FROM movie_genres
+            WHERE movie_id NOT IN (
+                SELECT id FROM current_movie_ids
+            )
+        """)
+
+        connection.execute("""
+            DELETE FROM movies
+            WHERE id NOT IN (
+                SELECT id FROM current_movie_ids
+            )
+        """)
+
+        total_movies = connection.execute(
+            "SELECT COUNT(*) FROM movies"
+        ).fetchone()[0]
+
+        total_genres = connection.execute(
+            "SELECT COUNT(*) FROM movie_genres"
+        ).fetchone()[0]
+
+    print(f"Movies: {total_movies}")
+    print(f"Movie-genre relationships: {total_genres}")
+    print(f"Database: {DATABASE_PATH}")
 
 
 if __name__ == "__main__":

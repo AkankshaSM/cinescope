@@ -1,6 +1,19 @@
+# Secrets
 .env
 .venv/
-data/*.db
-chroma_index/
+
+# Python
 __pycache__/
 *.py[cod]
+
+# macOS
+.DS_Store
+
+# Local databases and indexes
+data/*.db
+chroma_index/
+chroma_index.backup/
+chroma_index.staging-*/
+
+# Temporary backups
+data/raw/*.backup.json

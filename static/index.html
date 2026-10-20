@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#f5f1e9" />
+        <title>CineScope — A closer look at cinema</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap");
+            :root {
+                font-family: "DM Sans", Arial, sans-serif;
+                color: #292822;
+                background: #f5f1e9;
+                --ink: #292822;
+                --muted: #766f66;
+                --line: #e5ded2;
+                --paper: #fffdf9;
+                --accent: #ae4f32;
+                --soft: #f4e6db;
+                --green: #3e7661;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+            }
+            button,
+            input {
+                font: inherit;
+            }
+            button {
+                cursor: pointer;
+            }
+            button:disabled {
+                opacity: 0.55;
+                cursor: wait;
+            }
+            a {
+                color: var(--accent);
+            }
+            .shell {
+                min-height: 100vh;
+                display: grid;
+                grid-template-columns: 248px minmax(0, 1fr) 320px;
+                grid-template-rows: 78px minmax(0, 1fr);
+            }
+            .top {
+                grid-column: 1/-1;
+                border-bottom: 1px solid var(--line);
+                background: var(--paper);
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 30px;
+            }
+            .brand {
+                font:
+                    32px "DM Serif Display",
+                    Georgia,
+                    serif;
+                letter-spacing: -1.2px;
+            }
+            .brand span {
+                color: var(--accent);
+            }
+            .tagline {
+                color: var(--muted);
+                font-size: 12px;
+                letter-spacing: 1.3px;
+                text-transform: uppercase;
+            }
+            .sidebar {
+                border-right: 1px solid var(--line);
+                padding: 28px 17px;
+                display: flex;
+                flex-direction: column;
+                gap: 22px;
+                background: #f8f5ef;
+                min-height: 0;
+                overflow-y: auto;
+            }
+            .nav-button {
+                width: 100%;
+                text-align: left;
+                border: 0;
+                border-radius: 12px;
+                background: var(--soft);
+                color: #7e3c29;
+                padding: 14px 16px;
+                font-weight: 700;
+            }
+            .eyebrow {
+                font-size: 11px;
+                text-transform: uppercase;
+                letter-spacing: 1.8px;
+                color: #9b8b7b;
+                font-weight: 700;
+            }
+            .suggestions {
+                display: grid;
+                gap: 10px;
+            }
+            .suggestion {
+                border: 1px solid var(--line);
+                background: var(--paper);
+                border-radius: 12px;
+                text-align: left;
+                padding: 13px;
+                line-height: 1.45;
+                color: var(--ink);
+                font-size: 13px;
+            }
+            .suggestion:hover {
+                border-color: #c68a72;
+            }
+            .sidebar-footer {
+                margin-top: auto;
+                color: var(--muted);
+                font-size: 12px;
+                line-height: 1.7;
+                border-top: 1px solid var(--line);
+                padding-top: 17px;
+            }
+            .workspace {
+                min-width: 0;
+                display: flex;
+                flex-direction: column;
+                max-height: calc(100vh - 78px);
+            }
+            .conversation {
+                flex: 1;
+                overflow-y: auto;
+                padding: 36px clamp(22px, 5vw, 75px) 22px;
+            }
+            .welcome {
+                max-width: 690px;
+                margin: 7vh auto 50px;
+                text-align: center;
+            }
+            .welcome .small {
+                color: var(--accent);
+                letter-spacing: 2px;
+                font-size: 11px;
+                font-weight: 700;
+                text-transform: uppercase;
+            }
+            .welcome h1 {
+                font:
+                    clamp(40px, 5vw, 66px) / 1.08 "DM Serif Display",
+                    Georgia,
+                    serif;
+                letter-spacing: -1.5px;
+                margin: 16px 0;
+            }
+            .welcome h1 em {
+                color: var(--accent);
+                font-weight: 400;
+            }
+            .welcome p {
+                color: var(--muted);
+                font-size: 15px;
+                line-height: 1.7;
+            }
+            .messages {
+                max-width: 790px;
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+                gap: 22px;
+            }
+            .bubble {
+                max-width: 84%;
+                padding: 14px 19px;
+                border-radius: 16px;
+                line-height: 1.65;
+                font-size: 14px;
+            }
+            .user {
+                align-self: flex-end;
+                background: #e9ded2;
+            }
+            .assistant {
+                align-self: stretch;
+                max-width: 100%;
+                background: var(--paper);
+                border: 1px solid var(--line);
+                padding: 24px 27px;
+                box-shadow: 0 6px 24px #5d48330a;
+            }
+            .message-head {
+                font-size: 11px;
+                letter-spacing: 1.3px;
+                text-transform: uppercase;
+                font-weight: 700;
+                color: var(--accent);
+                margin-bottom: 12px;
+            }
+            .answer {
+                font-size: 14px;
+                line-height: 1.8;
+                overflow-wrap: anywhere;
+            }
+            .answer p {
+                margin: 0 0 14px;
+            }
+            .answer p:last-child {
+                margin-bottom: 0;
+            }
+            .answer h1,
+            .answer h2,
+            .answer h3 {
+                font-family: "DM Serif Display", Georgia, serif;
+                font-weight: 400;
+                line-height: 1.2;
+                margin: 20px 0 10px;
+            }
+            .answer h1 {
+                font-size: 30px;
+            }
+            .answer h2 {
+                font-size: 24px;
+            }
+            .answer h3 {
+                font-size: 20px;
+            }
+            .answer ul,
+            .answer ol {
+                padding-left: 24px;
+            }
+            .answer li {
+                margin-bottom: 9px;
+            }
+            .answer blockquote {
+                border-left: 3px solid var(--accent);
+                margin: 16px 0;
+                padding: 3px 16px;
+                color: var(--muted);
+            }
+            .answer a {
+                overflow-wrap: anywhere;
+            }
+            .answer code {
+                background: #f1ece5;
+                border-radius: 4px;
+                padding: 2px 4px;
+            }
+            .answer pre {
+                overflow: auto;
+                background: #f1ece5;
+                padding: 14px;
+                border-radius: 9px;
+            }
+            .answer pre code {
+                padding: 0;
+            }
+            .source-links {
+                border-top: 1px solid var(--line);
+                margin-top: 22px;
+                padding-top: 15px;
+                display: flex;
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+            .source-link {
+                font-size: 12px;
+                border: 1px solid var(--line);
+                background: #faf6ef;
+                padding: 8px 11px;
+                border-radius: 30px;
+                text-decoration: none;
+                color: #7e4632;
+            }
+            .source-link:hover {
+                border-color: var(--accent);
+            }
+            .composer-wrap {
+                padding: 18px clamp(22px, 5vw, 75px) 25px;
+                border-top: 1px solid var(--line);
+                background: #f5f1e9;
+            }
+            .composer {
+                max-width: 790px;
+                margin: auto;
+                display: flex;
+                gap: 10px;
+                background: var(--paper);
+                border: 1px solid #d8cfc1;
+                border-radius: 15px;
+                padding: 7px;
+                box-shadow: 0 3px 15px #33220d0a;
+            }
+            .composer input {
+                flex: 1;
+                min-width: 0;
+                border: 0;
+                outline: 0;
+                background: transparent;
+                padding: 12px;
+                color: var(--ink);
+                font-size: 14px;
+            }
+            .send {
+                border: 0;
+                border-radius: 10px;
+                background: var(--accent);
+                color: #fff;
+                padding: 0 21px;
+                font-weight: 700;
+            }
+            .composer-note {
+                max-width: 790px;
+                margin: 9px auto 0;
+                color: #92877a;
+                font-size: 11px;
+                text-align: center;
+            }
+            .inspector {
+                border-left: 1px solid var(--line);
+                background: #faf8f3;
+                max-height: calc(100vh - 78px);
+                overflow: auto;
+                padding: 30px 20px;
+            }
+            .panel-heading {
+                font:
+                    23px "DM Serif Display",
+                    Georgia,
+                    serif;
+                margin: 0 0 6px;
+            }
+            .panel-caption {
+                color: var(--muted);
+                font-size: 12px;
+                line-height: 1.5;
+                margin: 0 0 20px;
+            }
+            .panel-section {
+                margin-bottom: 28px;
+            }
+            .empty-note {
+                border: 1px dashed #d9cbb9;
+                padding: 20px;
+                border-radius: 12px;
+                color: var(--muted);
+                font-size: 12px;
+                line-height: 1.7;
+            }
+            .trace-step {
+                position: relative;
+                padding: 0 0 20px 27px;
+                border-left: 1px solid #d9cdbd;
+                margin-left: 8px;
+            }
+            .trace-step:last-child {
+                border-left-color: transparent;
+            }
+            .trace-step:before {
+                content: "";
+                position: absolute;
+                left: -5px;
+                top: 3px;
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+                background: #d6a16d;
+            }
+            .trace-step.error:before {
+                background: #bb5545;
+            }
+            .step-name {
+                font-size: 13px;
+                font-weight: 700;
+            }
+            .step-meta {
+                color: var(--muted);
+                font-size: 11px;
+                line-height: 1.6;
+                margin: 5px 0;
+            }
+            .pill-row {
+                display: flex;
+                gap: 5px;
+                flex-wrap: wrap;
+                margin: 8px 0;
+            }
+            .pill {
+                font-size: 10px;
+                background: #eee7dc;
+                color: #66584a;
+                padding: 4px 7px;
+                border-radius: 5px;
+            }
+            .pill.ok {
+                background: #e0eee6;
+                color: #356d55;
+            }
+            .pill.warn {
+                background: #fae4dd;
+                color: #a24432;
+            }
+            .step-details {
+                font-size: 11px;
+                color: #6d6258;
+                margin-top: 8px;
+            }
+            .step-details summary {
+                cursor: pointer;
+                color: #99533c;
+            }
+            .step-details pre {
+                white-space: pre-wrap;
+                overflow-wrap: anywhere;
+                font-size: 10px;
+                background: #f0ebe3;
+                padding: 9px;
+                border-radius: 7px;
+                max-height: 210px;
+                overflow: auto;
+            }
+            .panel-source {
+                display: block;
+                background: var(--paper);
+                border: 1px solid var(--line);
+                border-radius: 11px;
+                padding: 12px;
+                margin: 8px 0;
+                text-decoration: none;
+                color: var(--ink);
+                font-size: 12px;
+                overflow-wrap: anywhere;
+            }
+            .panel-source:hover {
+                border-color: var(--accent);
+            }
+            .panel-source small {
+                display: block;
+                margin-top: 4px;
+                color: var(--muted);
+            }
+            .status {
+                font-size: 12px;
+                color: var(--muted);
+                margin: 10px 0;
+            }
+            .mobile-inspector {
+                display: none;
+            }
+            .typing {
+                display: inline-block;
+                width: 7px;
+                height: 14px;
+                background: var(--accent);
+                vertical-align: -2px;
+                animation: blink 0.8s step-end infinite;
+            }
+            @keyframes blink {
+                50% {
+                    opacity: 0;
+                }
+            }
+            @media (max-width: 1100px) {
+                .shell {
+                    grid-template-columns: 210px minmax(0, 1fr);
+                }
+                .inspector {
+                    display: none;
+                }
+                .mobile-inspector {
+                    display: block;
+                    margin-top: 20px;
+                    border-top: 1px solid var(--line);
+                    padding-top: 10px;
+                }
+            }
+            @media (max-width: 700px) {
+                .shell {
+                    display: block;
+                }
+                .top {
+                    height: 65px;
+                    padding: 0 19px;
+                }
+                .brand {
+                    font-size: 26px;
+                }
+                .tagline {
+                    font-size: 9px;
+                }
+                .sidebar {
+                    display: none;
+                }
+                .workspace {
+                    height: calc(100dvh - 65px);
+                    max-height: none;
+                }
+                .conversation {
+                    padding: 22px 15px;
+                }
+                .welcome {
+                    margin: 8vh auto 35px;
+                }
+                .welcome h1 {
+                    font-size: 42px;
+                }
+                .assistant {
+                    padding: 18px;
+                }
+                .composer-wrap {
+                    padding: 12px;
+                }
+                .bubble {
+                    max-width: 94%;
+                }
+            }
+            /* Cinema-inspired branding and imagery */
+            .brand {
+                display: flex;
+                align-items: center;
+                gap: 11px;
+                font-family: "DM Serif Display", Georgia, serif;
+                font-size: 32px;
+                font-weight: 400;
+                letter-spacing: -1.2px;
+            }
+            .brand-icon {
+                width: 42px;
+                height: 42px;
+                object-fit: contain;
+                flex-shrink: 0;
+            }
+            .accent { color: var(--accent); }
+            .header-decoration {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            .popcorn-icon {
+                width: 35px;
+                height: 35px;
+                object-fit: contain;
+            }
+            .cinema-photo {
+                flex: 1;
+                min-height: 180px;
+                max-height: 330px;
+                border-radius: 13px;
+                background:
+                    linear-gradient(to top, rgba(47, 27, 15, 0.35), transparent 65%),
+                    url("/assets/film-reel.jpg") center / cover no-repeat;
+                box-shadow: 0 8px 25px rgba(66, 42, 24, 0.12);
+            }
+            .sidebar-visual {
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                gap: 14px;
+                min-height: 180px;
+            }
+            .sidebar-footer { margin-top: 0; }
+            @media (max-width: 700px) {
+                .brand { font-size: 26px; gap: 7px; }
+                .brand-icon { width: 34px; height: 34px; }
+                .popcorn-icon { width: 28px; height: 28px; }
+                .header-decoration { gap: 6px; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="shell">
+            <header class="top">
+                <div class="brand">
+                    <img src="/assets/clapperboard.svg" alt="" class="brand-icon" />
+                    <span>Cine<span class="accent">Scope</span></span>
+                </div>
+                <div class="header-decoration">
+                    <img src="/assets/popcorn.svg" alt="" class="popcorn-icon" />
+                    <div class="tagline">A closer look at cinema</div>
+                </div>
+            </header>
+            <aside class="sidebar">
+                <button class="nav-button" id="new-chat">＋ &nbsp; New conversation</button>
+                <div>
+                    <div class="eyebrow" style="margin-bottom: 13px">Now showing</div>
+                    <div class="suggestions" id="examples"></div>
+                </div>
+                <div class="sidebar-visual">
+                    <div class="cinema-photo" role="img" aria-label="Vintage film reel photograph"></div>
+                    <div class="sidebar-footer">
+                        Made for curious movie lovers.<br />Research · Discover · Stay informed<br /><br />Powered by
+                        specialized research agents.
+                    </div>
+                </div>
+            </aside>
+            <section class="workspace">
+                <div class="conversation" id="conversation">
+                    <div class="welcome" id="welcome">
+                        <div class="small">Your personal film journal</div>
+                        <h1>Every film has <em>more to say.</em></h1>
+                        <p>
+                            Explore the stories behind the screen. Find your next favorite film, compare cinematic
+                            ideas, or catch up on what's coming to theaters.
+                        </p>
+                    </div>
+                    <div class="messages" id="messages" aria-live="polite"></div>
+                </div>
+                <div class="composer-wrap">
+                    <form class="composer" id="chat-form">
+                        <input
+                            id="question"
+                            maxlength="2000"
+                            placeholder="Ask about a film, director, genre, or upcoming release…"
+                            required
+                            autocomplete="off"
+                            aria-label="Your movie question"
+                        /><button class="send" id="send" type="submit">Ask →</button>
+                    </form>
+                    <div class="composer-note" id="status">
+                        Thoughtful film research, with sources and a transparent process.
+                    </div>
+                </div>
+            </section>
+            <aside class="inspector">
+                <section class="panel-section">
+                    <h2 class="panel-heading">Behind the answer</h2>
+                    <p class="panel-caption">See which specialists and sources shaped the latest response.</p>
+                    <div class="eyebrow" style="margin-bottom: 12px">Research trail</div>
+                    <div id="trace-panel" class="empty-note">
+                        Ask a question to see the supervisor, data sources, and model decisions.
+                    </div>
+                </section>
+                <section class="panel-section">
+                    <div class="eyebrow" style="margin-bottom: 12px">Reading room · Sources</div>
+                    <div id="sources-panel" class="empty-note">Source links will appear here after research.</div>
+                </section>
+            </aside>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+        <script>
+            const form = document.getElementById("chat-form");
+            const input = document.getElementById("question");
+            const messages = document.getElementById("messages");
+            const statusEl = document.getElementById("status");
+            const sendButton = document.getElementById("send");
+            const conversation = document.getElementById("conversation");
+            const tracePanel = document.getElementById("trace-panel");
+            const sourcesPanel = document.getElementById("sources-panel");
+            const examples = [
+                ["01 · Film analysis", "What philosophical questions does Ex Machina explore?"],
+                ["02 · Movie discovery", "Find science-fiction movies directed by Christopher Nolan."],
+                ["03 · Coming attractions", "What are the latest announcements about Dune Part Three?"],
+            ];
+            for (const [label, question] of examples) {
+                const b = document.createElement("button");
+                b.className = "suggestion";
+                b.textContent = label + "\n" + question;
+                b.style.whiteSpace = "pre-line";
+                b.onclick = () => {
+                    input.value = question;
+                    input.focus();
+                };
+                document.getElementById("examples").appendChild(b);
+            }
+            document.getElementById("new-chat").onclick = () => {
+                if (sendButton.disabled) return;
+                messages.replaceChildren();
+                document.getElementById("welcome").hidden = false;
+                tracePanel.className = "empty-note";
+                tracePanel.textContent = "Ask a question to see the supervisor, data sources, and model decisions.";
+                sourcesPanel.className = "empty-note";
+                sourcesPanel.textContent = "Source links will appear here after research.";
+                statusEl.textContent = "A fresh conversation is ready.";
+                input.focus();
+            };
+            function scrollToBottom() {
+                conversation.scrollTop = conversation.scrollHeight;
+            }
+            function addUserMessage(text) {
+                const el = document.createElement("div");
+                el.className = "bubble user";
+                el.textContent = text;
+                messages.appendChild(el);
+                scrollToBottom();
+            }
+            function createAssistantMessage() {
+                const container = document.createElement("article");
+                container.className = "bubble assistant";
+                const head = document.createElement("div");
+                head.className = "message-head";
+                head.textContent = "CineScope · Film notes";
+                const answer = document.createElement("div");
+                answer.className = "answer";
+                answer.textContent = "Researching…";
+                const sourceLinks = document.createElement("div");
+                sourceLinks.className = "source-links";
+                sourceLinks.hidden = true;
+                const mobile = document.createElement("details");
+                mobile.className = "mobile-inspector";
+                const summary = document.createElement("summary");
+                summary.textContent = "Behind the answer · Research trail";
+                const mobileBody = document.createElement("div");
+                mobile.append(summary, mobileBody);
+                container.append(head, answer, sourceLinks, mobile);
+                messages.appendChild(container);
+                scrollToBottom();
+                return { answer, sourceLinks, mobileBody, buffer: "", trace: [], sources: [], failed: false };
+            }
+            function safeUrl(raw) {
+                try {
+                    const u = new URL(raw);
+                    return ["https:", "http:"].includes(u.protocol) ? u.href : null;
+                } catch {
+                    return null;
+                }
+            }
+            function renderMarkdown(ui) {
+                if (window.marked && window.DOMPurify) {
+                    ui.answer.innerHTML = DOMPurify.sanitize(marked.parse(ui.buffer, { gfm: true, breaks: false }));
+                } else {
+                    ui.answer.textContent = ui.buffer;
+                }
+            }
+            function makePill(text, variant = "") {
+                const p = document.createElement("span");
+                p.className = "pill " + variant;
+                p.textContent = text;
+                return p;
+            }
+            function buildTrace(entries) {
+                const root = document.createElement("div");
+                if (!entries.length) {
+                    root.className = "empty-note";
+                    root.textContent = "Waiting for the supervisor…";
+                    return root;
+                }
+                for (const entry of entries) {
+                    const step = document.createElement("div");
+                    step.className = "trace-step" + (entry.status === "error" ? " error" : "");
+                    const name = document.createElement("div");
+                    name.className = "step-name";
+                    name.textContent =
+                        {
+                            supervisor: "The curator · Supervisor",
+                            research: "Film research",
+                            discovery: "Movie discovery",
+                            news: "Current releases & news",
+                            synthesis: "Final editorial review",
+                        }[entry.node] || entry.node;
+                    step.appendChild(name);
+                    const meta = document.createElement("div");
+                    meta.className = "step-meta";
+                    meta.textContent = entry.reason || entry.status || "";
+                    step.appendChild(meta);
+                    const pills = document.createElement("div");
+                    pills.className = "pill-row";
+                    if (entry.complexity) pills.appendChild(makePill(entry.complexity));
+                    if (entry.selected_agents)
+                        pills.appendChild(makePill("Agents: " + entry.selected_agents.join(", ")));
+                    if (entry.routing) {
+                        pills.appendChild(
+                            makePill(entry.routing.provider === "nvidia" ? "NVIDIA NIM" : "OpenAI", "ok")
+                        );
+                        pills.appendChild(makePill(entry.routing.model));
+                    }
+                    if (entry.status === "error") pills.appendChild(makePill("Failed", "warn"));
+                    if (entry.tool_calls)
+                        for (const call of entry.tool_calls) {
+                            const tool = (call.tool || "").toLowerCase();
+                            const label = tool.includes("tavily")
+                                ? "Tavily MCP"
+                                : tool.includes("chroma")
+                                  ? "Chroma RAG"
+                                  : tool.includes("sqlite")
+                                    ? "SQLite"
+                                    : call.tool;
+                            const extra =
+                                call.chunks_retrieved != null
+                                    ? " · " + call.chunks_retrieved + " passages"
+                                    : call.movies_found != null
+                                      ? " · " + call.movies_found + " films"
+                                      : "";
+                            pills.appendChild(makePill(label + extra, call.status === "error" ? "warn" : "ok"));
+                        }
+                    step.appendChild(pills);
+                    if (
+                        entry.node === "research" &&
+                        (!entry.tool_calls ||
+                            !entry.tool_calls.some((t) => (t.tool || "").toLowerCase().includes("chroma")))
+                    ) {
+                        const note = document.createElement("div");
+                        note.className = "step-meta";
+                        note.textContent = "Local retrieval: Chroma RAG (tool detail not yet reported)";
+                        step.appendChild(note);
+                    }
+                    if (
+                        entry.node === "discovery" &&
+                        (!entry.tool_calls ||
+                            !entry.tool_calls.some((t) => (t.tool || "").toLowerCase().includes("sqlite")))
+                    ) {
+                        const note = document.createElement("div");
+                        note.className = "step-meta";
+                        note.textContent = "Catalog search: SQLite (tool detail not yet reported)";
+                        step.appendChild(note);
+                    }
+                    const details = document.createElement("details");
+                    details.className = "step-details";
+                    const summary = document.createElement("summary");
+                    summary.textContent = "Technical details";
+                    const pre = document.createElement("pre");
+                    pre.textContent = JSON.stringify(entry, null, 2);
+                    details.append(summary, pre);
+                    step.appendChild(details);
+                    root.appendChild(step);
+                }
+                return root;
+            }
+            function buildSources(items) {
+                const root = document.createElement("div");
+                const seen = new Set();
+                let count = 0;
+                for (const source of items) {
+                    const url = safeUrl(source.url);
+                    if (!url || seen.has(url)) continue;
+                    seen.add(url);
+                    count++;
+                    const a = document.createElement("a");
+                    a.className = "panel-source";
+                    a.href = url;
+                    a.target = "_blank";
+                    a.rel = "noopener noreferrer";
+                    const title = document.createElement("strong");
+                    title.textContent = source.title || "Source";
+                    const domain = document.createElement("small");
+                    domain.textContent = new URL(url).hostname;
+                    a.append(title, domain);
+                    root.appendChild(a);
+                }
+                if (!count) {
+                    root.className = "empty-note";
+                    root.textContent = "No source links reported for this answer.";
+                }
+                return root;
+            }
+            function updateInspector(ui) {
+                tracePanel.className = "";
+                tracePanel.replaceChildren(buildTrace(ui.trace));
+                sourcesPanel.className = "";
+                sourcesPanel.replaceChildren(buildSources(ui.sources));
+                ui.mobileBody.replaceChildren(buildTrace(ui.trace));
+                ui.sourceLinks.replaceChildren();
+                const seen = new Set();
+                for (const source of ui.sources) {
+                    const url = safeUrl(source.url);
+                    if (!url || seen.has(url)) continue;
+                    seen.add(url);
+                    const a = document.createElement("a");
+                    a.className = "source-link";
+                    a.href = url;
+                    a.target = "_blank";
+                    a.rel = "noopener noreferrer";
+                    a.textContent = "↗ " + (source.title || new URL(url).hostname);
+                    ui.sourceLinks.appendChild(a);
+                }
+                ui.sourceLinks.hidden = seen.size === 0;
+            }
+            function handleEvent(type, data, ui) {
+                if (type === "token") {
+                    ui.buffer += data.text || "";
+                    renderMarkdown(ui);
+                    scrollToBottom();
+                } else if (type === "trace") {
+                    ui.trace = data.entries || [];
+                    updateInspector(ui);
+                } else if (type === "sources") {
+                    ui.sources = data.items || [];
+                    updateInspector(ui);
+                } else if (type === "error") {
+                    ui.failed = true;
+                    statusEl.textContent = "Could not finish: " + (data.message || "Unknown error");
+                    if (!ui.buffer) {
+                        ui.answer.textContent = "Sorry, this request could not be completed.";
+                    }
+                } else if (type === "done") {
+                    if (!ui.failed) statusEl.textContent = "Research complete · Sources and agent trail available.";
+                }
+            }
+            async function streamChat(question, ui) {
+                const response = await fetch("/api/chat", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ message: question }),
+                });
+                if (!response.ok) throw new Error("HTTP " + response.status);
+                if (!response.body) throw new Error("Streaming not available");
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder();
+                let buffer = "";
+                let completed = false;
+                try {
+                    while (true) {
+                        const { value, done } = await reader.read();
+                        if (done) break;
+                        buffer += decoder.decode(value, { stream: true }).replace(/\r\n/g, "\n");
+                        let boundary;
+                        while ((boundary = buffer.indexOf("\n\n")) !== -1) {
+                            const block = buffer.slice(0, boundary);
+                            buffer = buffer.slice(boundary + 2);
+                            let type = "message";
+                            const lines = [];
+                            for (const line of block.split("\n")) {
+                                if (line.startsWith("event:")) type = line.slice(6).trim();
+                                if (line.startsWith("data:")) lines.push(line.slice(5).trimStart());
+                            }
+                            if (lines.length) {
+                                handleEvent(type, JSON.parse(lines.join("\n")), ui);
+                                if (type === "done" || type === "error") completed = true;
+                            }
+                        }
+                    }
+                    if (!completed && !ui.failed) statusEl.textContent = "The stream ended before completion.";
+                } finally {
+                    reader.releaseLock();
+                }
+            }
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                const question = input.value.trim();
+                if (!question || sendButton.disabled) return;
+                document.getElementById("welcome").hidden = true;
+                addUserMessage(question);
+                const ui = createAssistantMessage();
+                input.value = "";
+                sendButton.disabled = true;
+                statusEl.textContent = "Consulting the film research desk…";
+                tracePanel.className = "empty-note";
+                tracePanel.textContent = "Waiting for the supervisor…";
+                sourcesPanel.className = "empty-note";
+                sourcesPanel.textContent = "Collecting references…";
+                try {
+                    await streamChat(question, ui);
+                } catch (error) {
+                    ui.failed = true;
+                    statusEl.textContent = "Request failed: " + error.message;
+                    if (!ui.buffer) ui.answer.textContent = "Sorry, CineScope could not complete this request.";
+                } finally {
+                    sendButton.disabled = false;
+                    input.focus();
+                }
+            });
+        </script>
+    </body>
+</html>
