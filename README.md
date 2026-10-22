@@ -295,6 +295,32 @@ python -m src.rag "What themes of class inequality are explored in Parasite?"
 
 ## 8. Docker
 
+## 8. Docker
+
+### Building from a Fresh Git Clone
+
+Clone the CineScope repository:
+
+```bash
+git clone https://github.com/AkankshaSM/cinescope.git
+cd cinescope
+```
+
+The Git repository excludes generated artifacts, including `data/movies.db` and `chroma_index/`, to avoid committing local database and vector-index files.
+
+Before building the Docker image, complete the data ingestion and indexing steps described in **Section 6**:
+
+```bash
+python scripts/ingest_movies.py
+python scripts/build_database.py
+python scripts/ingest_documents.py
+python scripts/build_index.py
+```
+
+These steps require the API credentials configured in Section 5. The Chroma indexing process uses OpenAI embeddings and may incur API charges.
+
+Once the SQLite database and Chroma index have been generated, proceed with the Docker build instructions below.
+
 Build the container:
 
 ```bash
