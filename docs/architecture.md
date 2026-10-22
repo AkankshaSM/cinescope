@@ -10,10 +10,12 @@ CineScope is a multi-agent movie research and discovery assistant built with Fas
 flowchart TD
     UI[Web UI] --> API[FastAPI /api/chat]
     API --> SUP[LangGraph Supervisor]
-    SUP --> ROUTE{Next selected agent}
-    ROUTE --> R[Research Agent]
-    ROUTE --> D[Discovery Agent]
-    ROUTE --> N[News Agent]
+    SUP --> ROUTE{Off-topic?}
+    ROUTE -->|Yes| SYN
+    ROUTE -->|No| WORK{Next selected agent}
+    WORK --> R[Research Agent]
+    WORK --> D[Discovery Agent]
+    WORK --> N[News Agent]
     R --> CH[Chroma RAG]
     R -->|Optional web augmentation| MCP[Tavily Remote MCP]
     D --> SQL[SQLite Movie Catalog]
@@ -49,21 +51,24 @@ The supervisor receives the user's question and produces a structured `Superviso
 - `agents`: subset of `research`, `discovery`, `news`;
 - `complexity`: `simple` or `complex`;
 - `research_use_web`: whether the Research Agent needs external evidence;
+- `off_topic`: whether the question is outside the movie and cinema domain;
 - `reason`: explanation of routing.
 
-The `CineScopeState` fields are `question`, `selected_agents`, `pending_agents`, `complexity`, `research_use_web`, `routing_reason`, `results`, `trace`, and `final_answer`.
+The `CineScopeState` fields are `question`, `selected_agents`, `pending_agents`, `complexity`, `research_use_web`, `off_topic`, `routing_reason`, `results`, `trace`, and `final_answer`.
 
 ```mermaid
 flowchart LR
     START --> Supervisor
-    Supervisor --> Check{Pending agents?}
+    Supervisor --> Domain{Off-topic?}
+    Domain -->|Yes| Synthesis
+    Domain -->|No| Check{Pending agents?}
     Check -->|Yes| Worker[Run first pending worker]
     Worker --> Check
     Check -->|No| Synthesis
     Synthesis --> END
 ```
 
-The supervisor uses a structured-output OpenAI call. Selected agents are deduplicated; an empty selection defaults to Research. `route_next()` returns the first pending agent or `synthesis`. Each worker removes itself from the pending queue, appends its result, and records an execution trace. After all selected workers complete, synthesis combines successful outputs into one answer.
+The supervisor uses a structured-output OpenAI call. Selected agents are deduplicated. For in-domain questions, an empty selection defaults to Research; for off-topic questions, the supervisor selects no workers and routes directly to synthesis for a predefined polite redirect. `route_next()` returns the first pending agent or `synthesis`. Each worker removes itself from the pending queue, appends its result, and records an execution trace. After all selected workers complete, synthesis combines successful outputs into one answer.
 
 ## 5. Specialized Agents
 
@@ -100,7 +105,7 @@ The News Agent invokes Tavily Remote MCP for current movie announcements, releas
 | Indexed chunks | **5,954**, verified with `collection.count()` |
 | Retrieval | Top 5 vector-similarity chunks |
 
-The RAG pipeline is single-pass: embed query, retrieve top-k, inject context into the generation prompt, and answer with citations. Iterative retrieval and reranking are not implemented. The evaluation report describes a 75-film research corpus; previously created document files may also exist locally, so document-file count and indexed-chunk count should not be conflated.
+The RAG pipeline is single-pass: embed query, retrieve top-k, inject context into the generation prompt, and answer with citations. The standalone RAG prompt supplies numbered passages containing title, source URL, and passage text, then asks the model to answer using only that context, cite supported claims as `[1]`, `[2]`, etc., acknowledge insufficient evidence, and ignore instructions embedded in retrieved content. Iterative retrieval and reranking are not implemented. The evaluation report describes a 75-film research corpus; previously created document files may also exist locally, so document-file count and indexed-chunk count should not be conflated.
 
 ## 7. Model Routing
 
@@ -145,7 +150,7 @@ Retrieved documents, SQLite rows, and web results are treated as data rather tha
 ```mermaid
 flowchart TD
     Dev[Source and Docker image] --> AR[Artifact Registry]
-    AR --> CR[Cloud Run: cinescope]
+    AR --> CR[Cloud Run: csci599-a2-cinescope]
     SM[Secret Manager] --> CR
     SA[cinescope-runtime service account] --> CR
     Browser[Public browser or curl] --> CR
@@ -158,7 +163,7 @@ flowchart TD
 | Setting | Deployed configuration |
 |---|---|
 | Google Cloud project | `trojan-code` |
-| Service / region | `cinescope` / `us-west1` |
+| Service / region | `csci599-a2-cinescope` / `us-west1` |
 | CPU / memory | 1 vCPU / 2 GiB |
 | Concurrency / timeout | 4 / 300 seconds |
 | Minimum instances | 0 |

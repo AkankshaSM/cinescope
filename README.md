@@ -29,16 +29,18 @@ flowchart TD
     U["User / Web Interface"] --> API["FastAPI"]
     API --> S["LangGraph Supervisor"]
 
-    S --> R["Research Agent"]
-    S --> D["Discovery Agent"]
-    S --> N["News Agent"]
+    S --> O{"Off-topic?"}
+    O -->|No| R["Research Agent"]
+    O -->|No| D["Discovery Agent"]
+    O -->|No| N["News Agent"]
 
     R --> C["Chroma RAG"]
     D --> SQL["SQLite"]
     N --> T["Tavily Remote MCP"]
     R -. "Optional web evidence" .-> T
 
-    R --> SYN["Synthesis"]
+    O -->|Yes| SYN["Synthesis / Redirect"]
+    R --> SYN
     D --> SYN
     N --> SYN
 
@@ -46,7 +48,7 @@ flowchart TD
     API --> U
 ```
 
-The supervisor determines whether the question requires research, discovery, news, or multiple agents. Selected agents execute sequentially, and their results are combined into one final response.
+The supervisor determines whether the question requires research, discovery, news, or multiple agents. Selected agents execute sequentially, and their results are combined into one final response. For off-topic requests, it selects no worker agents and returns a polite redirect with an inspectable routing decision.
 
 A separate model router selects the appropriate LLM provider.
 
@@ -297,12 +299,7 @@ python -m src.rag "What themes of class inequality are explored in Parasite?"
 
 ### Building from a Fresh Git Clone
 
-Clone the CineScope repository:
-
-```bash
-git clone https://github.com/AkankshaSM/cinescope.git
-cd cinescope
-```
+After cloning the repository as described in Section 5, generate the local data artifacts before building the image.
 
 The Git repository excludes generated artifacts, including `data/movies.db` and `chroma_index/`, to avoid committing local database and vector-index files.
 
@@ -347,6 +344,53 @@ The container image is stored in Google Artifact Registry.
 
 Cloud Run uses a dedicated `cinescope-runtime` service account with API credentials provided through Google Secret Manager.
 
+### First-Time Google Cloud Project Setup
+
+The following commands configure a **new** project (with billing enabled) rather than assuming CineScope already exists. Install and authenticate the Google Cloud CLI, and ensure you have permission to create service accounts, secrets, IAM bindings, and Artifact Registry repositories.
+
+```bash
+PROJECT_ID=YOUR_GCP_PROJECT_ID
+REGION=us-west1
+SERVICE=csci599-a2-cinescope
+SA="cinescope-runtime@$PROJECT_ID.iam.gserviceaccount.com"
+IMAGE="$REGION-docker.pkg.dev/$PROJECT_ID/cinescope/cinescope:v4"
+
+gcloud config set project "$PROJECT_ID"
+gcloud services enable run.googleapis.com artifactregistry.googleapis.com secretmanager.googleapis.com
+
+gcloud artifacts repositories create cinescope \
+  --repository-format=docker --location="$REGION" \
+  --description="CineScope container images"
+
+gcloud iam service-accounts create cinescope-runtime \
+  --display-name="CineScope Runtime"
+```
+
+Create the three API secrets **from your local `.env`**, without putting their values in source control. This example assumes the `.env` file uses single-line `KEY=value` entries without shell quoting.
+
+```bash
+for KEY in OPENAI_API_KEY NVIDIA_API_KEY TAVILY_API_KEY; do
+  VALUE=$(grep "^${KEY}=" .env | cut -d= -f2-)
+  test -n "$VALUE" || { echo "Missing $KEY"; exit 1; }
+  printf '%s' "$VALUE" | gcloud secrets create "$KEY" \
+    --data-file=- --replication-policy=automatic
+  gcloud secrets add-iam-policy-binding "$KEY" \
+    --member="serviceAccount:$SA" \
+    --role="roles/secretmanager.secretAccessor"
+done
+```
+
+Build the Docker image after generating SQLite and Chroma as described in Sections 6 and 8. Authenticate Docker and push the image:
+
+```bash
+gcloud auth configure-docker "$REGION-docker.pkg.dev"
+docker build --platform linux/amd64 -t cinescope:v4 .
+docker tag cinescope:v4 "$IMAGE"
+docker push "$IMAGE"
+```
+
+Then use the Cloud Run deployment command below, replacing the example project ID and service account with `$PROJECT_ID` and `$SA` for a new project. Cloud Run injects the three secrets at runtime; the TMDB token is only needed for ingestion.
+
 ### Deployment Configuration
 
 | Setting | Value |
@@ -360,21 +404,21 @@ Cloud Run uses a dedicated `cinescope-runtime` service account with API credenti
 | Revision maximum instances | 1 |
 | Authentication | Public invocation using Cloud Run IAM `allUsers` binding |
 
-Deployment uses the existing container image:
+Deploy the image pushed above (or reuse an existing image for updates):
 
 ```bash
-PROJECT_ID=trojan-code
-REGION=us-west1
-
+PROJECT_ID=${PROJECT_ID:-trojan-code}
+REGION=${REGION:-us-west1}
+SA="cinescope-runtime@$PROJECT_ID.iam.gserviceaccount.com"
 IMAGE="$REGION-docker.pkg.dev/$PROJECT_ID/cinescope/cinescope:v4"
 
 gcloud run deploy csci599-a2-cinescope \
-  --project trojan-code \
+  --project "$PROJECT_ID" \
   --image "$IMAGE" \
   --platform managed \
-  --region us-west1 \
+  --region "$REGION" \
   --allow-unauthenticated \
-  --service-account cinescope-runtime@trojan-code.iam.gserviceaccount.com \
+  --service-account "$SA" \
   --memory 2Gi \
   --cpu 1 \
   --concurrency 4 \
@@ -387,7 +431,7 @@ gcloud run deploy csci599-a2-cinescope \
   OPENAI_API_KEY=OPENAI_API_KEY:latest,NVIDIA_API_KEY=NVIDIA_API_KEY:latest,TAVILY_API_KEY=TAVILY_API_KEY:latest
 ```
 
-This example assumes the existing Cloud Run service, runtime service account, secrets, and model environment variables are already configured. New deployments must configure those separately.
+For a first-time deployment, complete the setup above. Subsequent deployments can update the existing service image while retaining its service account, secret bindings, and resource settings.
 
 ## 10. Evaluation
 
