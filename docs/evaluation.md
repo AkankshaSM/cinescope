@@ -365,7 +365,7 @@ The first query had the highest retrieval latency, potentially reflecting initia
 
 CineScope was evaluated through its publicly accessible Cloud Run endpoint:
 
-`https://csci599-a2-cinescope-887999373674.us-west1.run.app/health`
+`https://csci599-a2-cinescope-887999373674.us-west1.run.app/api/chat`
 
 Three representative queries were used:
 
