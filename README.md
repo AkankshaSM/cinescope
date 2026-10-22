@@ -295,8 +295,6 @@ python -m src.rag "What themes of class inequality are explored in Parasite?"
 
 ## 8. Docker
 
-## 8. Docker
-
 ### Building from a Fresh Git Clone
 
 Clone the CineScope repository:
@@ -365,6 +363,11 @@ Cloud Run uses a dedicated `cinescope-runtime` service account with API credenti
 Deployment uses the existing container image:
 
 ```bash
+PROJECT_ID=trojan-code
+REGION=us-west1
+
+IMAGE="$REGION-docker.pkg.dev/$PROJECT_ID/cinescope/cinescope:v4"
+
 gcloud run deploy csci599-a2-cinescope \
   --project trojan-code \
   --image "$IMAGE" \
