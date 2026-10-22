@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parent.parent
 RESULTS_DIR = ROOT / "benchmarks/results"
 
 DEFAULT_URL = (
-    "https://cinescope-887999373674."
+    "https://csci599-a2-cinescope-887999373674."
     "us-west1.run.app"
 )
 

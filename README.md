@@ -6,7 +6,7 @@ CineScope is a multi-agent AI application that helps users discover movies, expl
 
 Built using **LangGraph, FastAPI, Chroma, SQLite, Tavily Remote MCP, OpenAI, and NVIDIA NIM**, CineScope combines structured movie metadata, semantic retrieval, and live web research to produce grounded answers with source citations.
 
-**Live Application:** https://cinescope-887999373674.us-west1.run.app
+**Live Application:** https://csci599-a2-cinescope-887999373674.us-west1.run.app
 
 **GitHub Repository:** https://github.com/AkankshaSM/cinescope
 
@@ -317,7 +317,7 @@ The Docker image includes the FastAPI application, frontend assets, SQLite datab
 
 CineScope is deployed to Google Cloud Run in `us-west1`.
 
-**Public URL:** https://cinescope-887999373674.us-west1.run.app
+**Public URL:** https://csci599-a2-cinescope-887999373674.us-west1.run.app
 
 The container image is stored in Google Artifact Registry.
 
@@ -460,3 +460,15 @@ CineScope is an academic project developed for USC CSCI 599 Assignment 2.
 ---
 
 **CineScope demonstrates a complete multi-agent application integrating structured retrieval, semantic RAG, live MCP tools, explainable model routing, streaming responses, quantitative evaluation, and cloud deployment.**
+
+### Off-Topic Query Handling
+
+CineScope is a domain-specific movie assistant. The LangGraph supervisor identifies whether each incoming question concerns movies, cinema, filmmaking, recommendations, or entertainment news.
+
+For unrelated requests, such as weather forecasts or general programming questions, the supervisor selects no specialized workers and returns a polite explanation of CineScope's supported capabilities.
+
+The routing decision remains visible in the execution trace with `off_topic=true`, an empty agent selection, and an explanation.
+
+Movie-related questions are not rejected merely because a title is absent from the local database or research corpus.
+
+This design avoids unnecessary tool calls and follows the instructor's clarification that domain-specific assistants may politely redirect off-topic requests.

@@ -224,3 +224,15 @@ Potential future improvements include movie-aware retrieval, reranking, stronger
 - `docs/evaluation.md` — RAGAS, benchmarks and cost analysis
 - `evals/evaluate_rag.py` — isolated RAGAS evaluation
 - `benchmarks/` — local RAG, Cloud Run and model comparisons
+
+### Off-Topic Routing
+
+The CineScope supervisor performs domain classification as part of its structured routing decision.
+
+The `SupervisorDecision` schema includes an `off_topic` boolean. For questions outside the movie and cinema domain, the supervisor sets `off_topic=true` and selects no worker agents.
+
+The graph routes directly to synthesis, which returns a predefined, polite domain-specific response without invoking Research, Discovery, News, or an additional generation model.
+
+The execution trace preserves the supervisor's decision, including the off-topic flag, empty selected-agent list, and routing explanation.
+
+This behavior ensures that unrelated requests receive valid responses without unnecessary tool calls. Movie-related questions remain eligible for normal routing even when the requested film is absent from the local corpus.

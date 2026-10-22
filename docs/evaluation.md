@@ -619,3 +619,21 @@ Baseline results:
 `benchmarks/results/model_comparison_20261021_222318.json`
 
 The results preserve the prompts, generated answers, reported token usage, and response latencies for inspection.
+
+### Off-Topic Routing Validation
+
+Following the instructor's Piazza clarification, CineScope was extended to recognize requests outside its movie and cinema domain.
+
+The supervisor now returns an explicit `off_topic` decision. For unrelated questions, the graph skips all specialized workers and returns a polite explanation of CineScope's supported capabilities.
+
+The following regression cases were used:
+
+| Test | Expected routing |
+|---|---|
+| Weather in Los Angeles | Off-topic; no workers |
+| Python linked-list implementation | Off-topic; no workers |
+| Christopher Nolan science-fiction movies | Discovery |
+| Themes of The Matrix | Research |
+| Upcoming Dune announcements | News |
+
+The execution trace exposes the supervisor's routing reason, selected-agent list, and off-topic flag. Off-topic requests do not invoke specialized agents or additional synthesis generation.

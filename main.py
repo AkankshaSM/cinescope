@@ -57,6 +57,7 @@ async def chat(request: ChatRequest):
             "results": [],
             "trace": [],
             "final_answer": "",
+            "off_topic": False,
         }
 
         emitted_tokens = False

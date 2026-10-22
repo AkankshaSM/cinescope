@@ -564,6 +564,12 @@
                 .popcorn-icon { width: 28px; height: 28px; }
                 .header-decoration { gap: 6px; }
             }
+            .trace-step.error:before {
+                background: #bb5545;
+            }
+            .trace-step.off-topic:before {
+                background: #9b8b7b;
+            }
         </style>
     </head>
     <body>
@@ -754,9 +760,30 @@
                     step.appendChild(meta);
                     const pills = document.createElement("div");
                     pills.className = "pill-row";
-                    if (entry.complexity) pills.appendChild(makePill(entry.complexity));
-                    if (entry.selected_agents)
-                        pills.appendChild(makePill("Agents: " + entry.selected_agents.join(", ")));
+
+                    if (entry.off_topic === true) {
+                        step.classList.add("off-topic");
+
+                        pills.appendChild(
+                            makePill("Off-topic · No agents selected", "warn")
+                        );
+                    } else {
+                        if (entry.complexity) {
+                            pills.appendChild(makePill(entry.complexity));
+                        }
+
+                        if (entry.selected_agents) {
+                            pills.appendChild(
+                                makePill(
+                                    "Agents: " +
+                                    (entry.selected_agents.length
+                                        ? entry.selected_agents.join(", ")
+                                        : "None")
+                                )
+                            );
+                        }
+                    }
+
                     if (entry.routing) {
                         pills.appendChild(
                             makePill(entry.routing.provider === "nvidia" ? "NVIDIA NIM" : "OpenAI", "ok")

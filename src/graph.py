@@ -2,6 +2,7 @@
 import asyncio
 import json
 import sys
+import os
 from pathlib import Path
 from typing import Literal, TypedDict
 
@@ -25,13 +26,18 @@ AgentName = Literal["research", "discovery", "news"]
 
 class SupervisorDecision(BaseModel):
     agents: list[AgentName] = Field(
-        description="Agents needed to answer the question"
+        description="Specialized agents needed to answer the question"
     )
-    complexity: Complexity = Field(
-        description="Simple for direct lookups; complex for multi-step reasoning"
+    complexity: Literal["simple", "complex"] = Field(
+        default="simple"
     )
-    research_use_web: bool = Field(
-        description="Whether Research needs external web evidence"
+    research_use_web: bool = Field(default=False)
+    off_topic: bool = Field(
+        default=False,
+        description=(
+            "True only when the question is unrelated "
+            "to movies, cinema, or filmmaking."
+        ),
     )
     reason: str = Field(
         description="Explanation of the routing decision"
@@ -48,6 +54,7 @@ class CineScopeState(TypedDict):
     results: list[dict]
     trace: list[dict]
     final_answer: str
+    off_topic: bool
 
 
 SUPERVISOR_PROMPT = """
@@ -93,6 +100,20 @@ Set research_use_web=true when:
 Otherwise set research_use_web=false.
 
 The News Agent always uses live web search.
+
+Domain classification:
+- CineScope specializes in movies, cinema, filmmaking,
+  film recommendations, and current entertainment news.
+- If the question is unrelated to these topics, set
+  off_topic=true and agents=[].
+- For off-topic questions, do not select any worker.
+- Explain why the question is outside CineScope's scope.
+- For movie-related questions, set off_topic=false.
+- Movie-related creative questions are in scope.
+- Questions about unfamiliar movies are still in scope.
+- Do not classify a question as off-topic merely because
+  a movie is missing from the local database or corpus.
+- When off_topic=true, research_use_web=false.
 """
 
 
@@ -107,29 +128,46 @@ async def supervisor_node(state: CineScopeState) -> dict:
         HumanMessage(content=state["question"]),
     ])
 
-    selected = list(dict.fromkeys(decision.agents))
+    off_topic = decision.off_topic
+    selected = (
+        []
+        if off_topic
+        else list(dict.fromkeys(decision.agents))
+    )
 
-    if not selected:
+    if not off_topic and not selected:
         selected = ["research"]
 
     return {
         "selected_agents": selected,
         "pending_agents": selected.copy(),
+        "off_topic": off_topic,
         "complexity": decision.complexity,
-        "research_use_web": decision.research_use_web,
+        "research_use_web": (
+            False if off_topic else decision.research_use_web
+        ),
         "routing_reason": decision.reason,
         "trace": [{
             "node": "supervisor",
             "selected_agents": selected,
+            "off_topic": off_topic,
             "complexity": decision.complexity,
-            "research_use_web": decision.research_use_web,
+            "research_use_web": (
+                False if off_topic else decision.research_use_web
+            ),
             "reason": decision.reason,
-            "routing": decision_model.to_dict(),
+            "routing": {
+                "provider": "openai",
+                "model": os.getenv("OPENAI_MODEL", "gpt-4.1-mini"),
+                "reason": "Structured supervisor classification",
+            },
         }],
     }
 
 
 def route_next(state: CineScopeState) -> str:
+    if state.get("off_topic", False):
+        return "synthesis"
     pending = state.get("pending_agents", [])
     return pending[0] if pending else "synthesis"
 
@@ -231,6 +269,22 @@ Rules:
 
 
 async def synthesis_node(state: CineScopeState) -> dict:
+    if state.get("off_topic", False):
+        return {
+            "final_answer": (
+                "CineScope specializes in movies, film analysis, "
+                "recommendations, and cinema news.\n\n"
+                "You can ask me to:\n"
+                "- Recommend movies by genre, director, or rating.\n"
+                "- Explore themes and storytelling in a film.\n"
+                "- Find the latest movie announcements."
+            ),
+            "trace": state.get("trace", []) + [{
+                "node": "synthesis",
+                "status": "off_topic_redirect",
+                "routing": None,
+            }],
+        }
     successful = [
         result
         for result in state.get("results", [])
@@ -341,6 +395,7 @@ async def run_cinescope(question: str) -> dict:
         "results": [],
         "trace": [],
         "final_answer": "",
+        "off_topic": False,
     }
 
     return await graph.ainvoke(initial_state)
