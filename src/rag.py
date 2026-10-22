@@ -4,12 +4,10 @@ import sys
 from pathlib import Path
 
 import chromadb
-import asyncio
 from dotenv import load_dotenv
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
-import json
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT_DIR / ".env", override=True)
@@ -127,47 +125,30 @@ def answer_question(question: str) -> dict:
 
 
 
-async def main():
-    query = " ".join(sys.argv[1:]).strip()
+def main():
+    question = " ".join(sys.argv[1:]).strip()
 
-    if not query:
-        query = "Latest movie release announcements"
+    if not question:
+        print(
+            'Usage: python -m src.rag "Your movie research question"'
+        )
+        return
 
-    print("Connecting to Tavily Remote MCP...")
+    result = answer_question(question)
 
-    tools = await get_tavily_tools()
+    print("\n=== CineScope RAG Answer ===\n")
+    print(result["answer"])
 
-    print("\nAvailable MCP tools:")
-    for tool in tools:
-        print(f"- {tool.name}")
+    print("\n=== Retrieved Sources ===\n")
 
-    search_tool = next(
-        (tool for tool in tools if "search" in tool.name.lower()),
-        None,
-    )
-
-    if search_tool is None:
-        raise RuntimeError("Tavily search tool not available")
-
-    print(f"\nSearching: {query}\n")
-
-    result = await search_tool.ainvoke({"query": query})
-
-    print("=== Tavily Search Results ===\n")
-    print(result)
-
-    for item in result:
-        if isinstance(item, dict) and item.get("type") == "text":
-            try:
-                payload = json.loads(item["text"])
-            except json.JSONDecodeError:
-                continue
-
-            if isinstance(payload, dict) and "error" in payload:
-                raise RuntimeError(
-                    f"Tavily search failed: {payload}"
-                )
+    for index, document in enumerate(
+        result["sources"], start=1
+    ):
+        print(f"[{index}] {document['title']}")
+        print(f"    Chunk: {document['id']}")
+        print(f"    URL: {document['source']}")
+        print()
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

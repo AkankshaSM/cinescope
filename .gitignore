@@ -1,19 +1,23 @@
-# Secrets
 .env
-.venv/
+.env.*
+!.env.example
 
-# Python
+.venv/
+.venv-eval/
+.venv-prod-test/
+
 __pycache__/
 *.py[cod]
 
-# macOS
 .DS_Store
+**/.DS_Store
 
-# Local databases and indexes
 data/*.db
+data/raw/*.backup.json
+
 chroma_index/
 chroma_index.backup/
-chroma_index.staging-*/
 
-# Temporary backups
-data/raw/*.backup.json
+.pytest_cache/
+
+requirements-lock.txt

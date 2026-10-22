@@ -7,8 +7,11 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
+import logging
 
 from src.graph import graph
+
+logger = logging.getLogger(__name__)
 
 ROOT_DIR = Path(__file__).resolve().parent
 app = FastAPI(title="CineScope")
@@ -152,8 +155,9 @@ async def chat(request: ChatRequest):
             raise
 
         except Exception as error:
+            logger.exception("CineScope request failed")
             yield sse("error", {
-                "message": str(error)
+                "message": "CineScope could not complete this request."
             })
 
     return StreamingResponse(

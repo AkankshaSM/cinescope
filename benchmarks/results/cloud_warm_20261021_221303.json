@@ -1,0 +1,38 @@
+[
+  {
+    "label": "warm",
+    "question": "Find science-fiction movies directed by Christopher Nolan.",
+    "ttft_seconds": 34.769,
+    "first_event_seconds": 8.355,
+    "total_seconds": 36.147,
+    "stream_chunks": 163,
+    "agents": [
+      "discovery"
+    ],
+    "completed": true
+  },
+  {
+    "label": "warm",
+    "question": "How does The Matrix explore simulated reality?",
+    "ttft_seconds": 11.925,
+    "first_event_seconds": 1.352,
+    "total_seconds": 15.16,
+    "stream_chunks": 572,
+    "agents": [
+      "research"
+    ],
+    "completed": true
+  },
+  {
+    "label": "warm",
+    "question": "What are the latest announcements about Dune Part Three?",
+    "ttft_seconds": 50.526,
+    "first_event_seconds": 0.961,
+    "total_seconds": 59.903,
+    "stream_chunks": 1070,
+    "agents": [
+      "news"
+    ],
+    "completed": true
+  }
+]

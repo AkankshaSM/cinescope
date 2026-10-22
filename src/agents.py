@@ -248,6 +248,7 @@ async def discovery_agent(
     min_rating: float | None = None,
     complexity: Complexity = "simple",
 ) -> dict:
+    tool_calls = []
     try:
         filters, filter_routing = await extract_movie_filters(
             question
